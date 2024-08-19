@@ -3,6 +3,7 @@ package com.msc.demo_mvvm.component.home
 import android.app.Activity
 import android.content.Intent
 import com.msc.demo_mvvm.base.activity.BaseActivity
+import com.msc.demo_mvvm.component.auto.AutoCleanActivity
 import com.msc.demo_mvvm.component.setting.SettingActivity
 import com.msc.demo_mvvm.databinding.ActivityMainBinding
 import com.msc.demo_mvvm.utils.SpManager
@@ -35,6 +36,18 @@ class HomeActivity : BaseActivity<ActivityMainBinding>() {
         viewBinding.run {
             setting.setOnClickListener {
                 SettingActivity.start(this@HomeActivity)
+            }
+            auto.setOnClickListener {
+                AutoCleanActivity.start(this@HomeActivity)
+            }
+            manual.setOnClickListener {
+                showToast("manual")
+            }
+            vibrate.setOnClickListener {
+                showToast("vibrate")
+            }
+            blower.setOnClickListener {
+                showToast("blower")
             }
         }
     }

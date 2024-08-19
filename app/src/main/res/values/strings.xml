@@ -65,4 +65,6 @@
     <string name="txt_manual_clean">Manual Cleaner</string>
     <string name="txt_vibrate">Vibrate Cleaner</string>
     <string name="txt_blower">Blower</string>
+    <string name="txt_front">Front</string>
+    <string name="txt_ear">Ear</string>
 </resources>
