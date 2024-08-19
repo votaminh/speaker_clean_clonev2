@@ -60,4 +60,9 @@
     <string name="txt_read_media_permisison">Read media</string>
     <string name="txt_receiver_notification">Get notifications</string>
     <string name="txt_premission_request_message">In order for the application to operate stably, please provide the following permissions</string>
+    <string name="txt_banner_title">Raise volume to maximum</string>
+    <string name="txt_auto_clean">Auto Cleaner</string>
+    <string name="txt_manual_clean">Manual Cleaner</string>
+    <string name="txt_vibrate">Vibrate Cleaner</string>
+    <string name="txt_blower">Blower</string>
 </resources>
