@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.base.activity.BaseActivity
+import com.msc.demo_mvvm.component.test_speaker.TestSpeakerActivity
 import com.msc.demo_mvvm.databinding.ActivityAutoBinding
 
 class AutoCleanActivity : BaseActivity<ActivityAutoBinding>() {
@@ -61,7 +62,7 @@ class AutoCleanActivity : BaseActivity<ActivityAutoBinding>() {
             pause()
         }
 
-
+        TestSpeakerActivity.start(this@AutoCleanActivity)
     }
 
     private fun playSpeaker() {
