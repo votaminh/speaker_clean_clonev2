@@ -3,6 +3,7 @@ package com.msc.demo_mvvm.component.home
 import android.app.Activity
 import android.content.Intent
 import com.msc.demo_mvvm.base.activity.BaseActivity
+import com.msc.demo_mvvm.component.setting.SettingActivity
 import com.msc.demo_mvvm.databinding.ActivityMainBinding
 import com.msc.demo_mvvm.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,5 +31,11 @@ class HomeActivity : BaseActivity<ActivityMainBinding>() {
         super.initViews()
 
         spManager.saveOnBoarding()
+
+        viewBinding.run {
+            setting.setOnClickListener {
+                SettingActivity.start(this@HomeActivity)
+            }
+        }
     }
 }

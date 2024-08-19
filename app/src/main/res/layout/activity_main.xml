@@ -24,6 +24,7 @@
 
 
         <ImageView
+            android:id="@+id/setting"
             android:layout_width="@dimen/size40"
             android:layout_height="@dimen/size40"
             android:src="@drawable/ic_setting"
