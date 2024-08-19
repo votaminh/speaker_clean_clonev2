@@ -43,8 +43,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
             viewBinding.imvBack.visibility = View.GONE
         }
 
-        setStatusBarColor(ContextCompat.getColor(this, R.color.white), true)
-
         viewBinding.imvBack.setOnClickListener {
             finish()
         }

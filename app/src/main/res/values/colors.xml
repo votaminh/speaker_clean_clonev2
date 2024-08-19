@@ -3,9 +3,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="app_bg">#101332</color>
+    <color name="app_bg">#28295f</color>
     <color name="black30">#B3000000</color>
     <color name="red">#FF564A</color>
-    <color name="gray">#949494</color>
-    <color name="app_main">#33C181</color>
+    <color name="app_main">#353374</color>
+    <color name="app_main2">#29295d</color>
+
+    <color name="gray">#919191</color>
+
+    <color name="gray1">#F8F8F8</color>
+    <color name="gray2">#DADADA</color>
+    <color name="gray3">#B6B6B6</color>
+    <color name="gray4">#979797</color>
+    <color name="gray5">#757575</color>
+    <color name="gray6">#4A4A4A</color>
 </resources>
