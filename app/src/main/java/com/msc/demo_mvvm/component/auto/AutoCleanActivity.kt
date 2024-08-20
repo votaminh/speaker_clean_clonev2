@@ -4,17 +4,21 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.view.View
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.base.activity.BaseActivity
 import com.msc.demo_mvvm.component.test_speaker.TestSpeakerActivity
 import com.msc.demo_mvvm.databinding.ActivityAutoClone2Binding
+import com.msc.speaker_cleaner.domain.layer.SourceAudio
+import com.msc.speaker_cleaner.domain.layer.StateAudio
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
-
-    private var aniSpeaker : ValueAnimator? = null
-
+    private val viewModel: AutoViewModel by viewModels()
     private var isUseFront = true
-    private var isPlaying = false
 
     companion object {
         fun start(activity : Activity){
@@ -31,54 +35,24 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
         super.initViews()
 
         viewBinding.run {
-            imvPlay.setOnClickListener {
-                if(isPlaying){
-                    isPlaying = false
-                    pauseSpeaker()
-                }else{
-                    isPlaying = true
-                    playSpeaker()
+            viewBinding.run {
+                imvPlay.setOnClickListener {
+                    viewModel.start()
                 }
+
+                tvFront.setOnClickListener {
+                    viewModel.useSpeaker()
+                    isUseFront = true
+                    updateUiSpeaker()
+                }
+
+                tvEar.setOnClickListener {
+                    viewModel.useEarpiece()
+                    isUseFront = false
+                    updateUiSpeaker()
+                }
+
             }
-
-            tvFront.setOnClickListener {
-                isUseFront = true
-                updateUiSpeaker()
-            }
-
-            tvEar.setOnClickListener {
-                isUseFront = false
-                updateUiSpeaker()
-            }
-        }
-    }
-
-    private fun pauseSpeaker() {
-        viewBinding.run {
-            imvPlay.setImageResource(R.drawable.ic_play)
-        }
-
-        aniSpeaker?.run {
-            pause()
-        }
-
-        TestSpeakerActivity.start(this@AutoCleanActivity)
-    }
-
-    private fun playSpeaker() {
-
-        viewBinding.run {
-            imvPlay.setImageResource(R.drawable.ic_pause)
-        }
-
-        aniSpeaker = ValueAnimator.ofInt(0,100)
-        aniSpeaker?.run {
-            duration = 5000
-            addUpdateListener { animation ->
-                val progress = animation.animatedValue as Int
-                viewBinding.tvPercent.text = "$progress%"
-            }
-            start()
         }
     }
 
@@ -91,6 +65,67 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
                 tvEar.animate().alpha(1f).setDuration(0).start()
                 tvFront.animate().alpha(0.3f).setDuration(0).start()
             }
+        }
+    }
+
+    override fun initObserver() {
+        super.initObserver()
+
+        viewModel.run {
+            stateAudio.observe(this@AutoCleanActivity) {
+                when (it) {
+                    StateAudio.PLAYING -> {
+                        viewBinding.imvPlay.setImageResource(R.drawable.ic_pause)
+//                        viewBinding.tvContAuto.visibility = View.VISIBLE
+//                        viewBinding.lnBtnFrontEar.visibility = View.GONE
+                    }
+
+                    StateAudio.STOP -> {
+                        viewBinding.imvPlay.setImageResource(R.drawable.ic_play)
+//                        viewBinding.tvContAuto.visibility = View.GONE
+//                        viewBinding.lnBtnFrontEar.visibility = View.VISIBLE
+                    }
+                }
+            }
+
+            percentCleaner.observe(this@AutoCleanActivity) {
+                viewBinding.tvPercent.text = "$it %"
+//                viewBinding.arcView.setProgress(it.toFloat())
+
+//                if (it == 100) {
+//                    activity?.let {
+//                        (activity as MainActivity).showInter{
+//                            TestSpeakerActivity.start(requireActivity())
+//                        }
+//                    }
+//                }
+            }
+
+            sourceAudio.observe(this@AutoCleanActivity) {
+                when (it) {
+                    SourceAudio.FRONT -> {
+                        viewBinding.run {
+                            isUseFront = true
+                            updateUiSpeaker()
+                        }
+                    }
+
+                    SourceAudio.EAR -> {
+                        viewBinding.run {
+                            isUseFront = false
+                            updateUiSpeaker()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        kotlin.runCatching {
+            viewModel.stopAudio()
         }
     }
 }
