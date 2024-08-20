@@ -3,6 +3,9 @@ package com.msc.demo_mvvm.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import com.msc.demo_mvvm.R
 import java.util.Locale
 
@@ -40,5 +43,12 @@ object AppEx {
 
     fun invertRange(values: Float, start: Float, end: Float): Float {
         return (values - start) * 100 / (end - start)
+    }
+
+    fun ImageView.tintColor(color : Int){
+        this.setColorFilter(color, PorterDuff.Mode.SRC_IN)
+    }
+    fun ImageView.tintColorRes(colorRes : Int){
+        this.setColorFilter(ContextCompat.getColor(this.context, colorRes), PorterDuff.Mode.SRC_IN)
     }
 }
