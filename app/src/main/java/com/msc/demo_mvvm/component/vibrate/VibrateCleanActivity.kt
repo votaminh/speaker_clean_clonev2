@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
+import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.base.activity.BaseActivity
+import com.msc.demo_mvvm.component.test_speaker.TestSpeakerActivity
 import com.msc.demo_mvvm.databinding.ActivityVibrateClone2Binding
 import com.msc.speaker_cleaner.component.cleanervibrate.IntensityVibrate
 import com.msc.speaker_cleaner.component.cleanervibrate.StateVibrate
@@ -28,9 +30,9 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
         lifecycle.addObserver(viewModel)
 
         viewBinding.apply {
-//            btnPlayAndPause.setOnClickListener { viewModel.start() }
-//            btnNormal.setOnClickListener { viewModel.setInensity(IntensityVibrate.NORMAL) }
-//            btnStrong.setOnClickListener { viewModel.setInensity(IntensityVibrate.STRONG) }
+            imvPlay.setOnClickListener { viewModel.start() }
+            tvNormal.setOnClickListener { viewModel.setInensity(IntensityVibrate.NORMAL) }
+            tvStrong.setOnClickListener { viewModel.setInensity(IntensityVibrate.STRONG) }
         }
     }
 
@@ -41,11 +43,11 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
             stateLive.observe(this@VibrateCleanActivity) {
                 when (it) {
                     StateVibrate.PLAYING -> {
-//                        viewBinding.btnPlayAndPause.setImageResource(R.drawable.ic_pause)
+                        viewBinding.imvPlay.setImageResource(R.drawable.ic_pause)
                     }
 
                     StateVibrate.STOP -> {
-//                        viewBinding.btnPlayAndPause.setImageResource(R.drawable.ic_play)
+                        viewBinding.imvPlay.setImageResource(R.drawable.ic_play)
                     }
                 }
             }
@@ -53,7 +55,7 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
             percentLive.observe(this@VibrateCleanActivity) {
                 viewBinding.tvPercent.text = "$it %"
                 if (it == 100) {
-//                    TestSpeakerActivity.start(requireActivity())
+                    TestSpeakerActivity.start(this@VibrateCleanActivity)
                 }
             }
 
