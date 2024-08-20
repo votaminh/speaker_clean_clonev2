@@ -78,6 +78,11 @@
         </activity>
 
         <activity
+            android:name=".component.vibrate.VibrateCleanActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
             android:name=".component.setting.SettingActivity"
             android:exported="true">
         </activity>

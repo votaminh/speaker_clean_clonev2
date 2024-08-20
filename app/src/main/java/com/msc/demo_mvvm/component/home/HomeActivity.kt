@@ -6,6 +6,7 @@ import com.msc.demo_mvvm.base.activity.BaseActivity
 import com.msc.demo_mvvm.component.auto.AutoCleanActivity
 import com.msc.demo_mvvm.component.manual.ManualCleanerActivity
 import com.msc.demo_mvvm.component.setting.SettingActivity
+import com.msc.demo_mvvm.component.vibrate.VibrateCleanActivity
 import com.msc.demo_mvvm.databinding.ActivityMainBinding
 import com.msc.demo_mvvm.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +46,7 @@ class HomeActivity : BaseActivity<ActivityMainBinding>() {
                 ManualCleanerActivity.start(this@HomeActivity)
             }
             vibrate.setOnClickListener {
-                showToast("vibrate")
+                VibrateCleanActivity.start(this@HomeActivity)
             }
             blower.setOnClickListener {
                 showToast("blower")
