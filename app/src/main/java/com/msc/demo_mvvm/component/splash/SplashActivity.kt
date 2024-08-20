@@ -15,13 +15,13 @@ import com.msc.demo_mvvm.component.home.HomeActivity
 import com.msc.demo_mvvm.component.language.LanguageActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-import com.msc.demo_mvvm.databinding.ActivitySplashBinding
+import com.msc.demo_mvvm.databinding.ActivitySplashClone2Binding
 import com.msc.demo_mvvm.utils.NativeAdmobUtils
 import com.msc.demo_mvvm.utils.NetworkUtil
 import com.msc.demo_mvvm.utils.SpManager
 
 @AndroidEntryPoint
-class SplashActivity : BaseActivity<ActivitySplashBinding>() {
+class SplashActivity : BaseActivity<ActivitySplashClone2Binding>() {
     private var progressAnimator: ValueAnimator? = null
 
     @Inject
@@ -33,8 +33,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         }
     }
 
-    override fun provideViewBinding(): ActivitySplashBinding =
-        ActivitySplashBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivitySplashClone2Binding =
+        ActivitySplashClone2Binding.inflate(layoutInflater)
 
     override fun onDestroy() {
         cancelLoadingListener()

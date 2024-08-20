@@ -13,7 +13,7 @@ import com.msc.demo_mvvm.component.onboarding.OnBoardingActivity
 import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.admob.NativeAdmob
 import com.msc.demo_mvvm.component.home.HomeActivity
-import com.msc.demo_mvvm.databinding.ActivityLanguageBinding
+import com.msc.demo_mvvm.databinding.ActivityLanguageClone2Binding
 import com.msc.demo_mvvm.utils.AppEx.setAppLanguage
 import com.msc.demo_mvvm.utils.NativeAdmobUtils
 import com.msc.demo_mvvm.utils.NetworkUtil
@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
+class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
     private val viewModel: LanguageViewModel by viewModels()
     private val languageAdapter = LanguageAdapter()
 
@@ -31,8 +31,8 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
 
     var canShowNative = true
 
-    override fun provideViewBinding(): ActivityLanguageBinding {
-        return ActivityLanguageBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivityLanguageClone2Binding {
+        return ActivityLanguageClone2Binding.inflate(layoutInflater)
     }
 
     override fun initViews() {

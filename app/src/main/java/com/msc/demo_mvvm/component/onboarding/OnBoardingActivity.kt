@@ -9,7 +9,7 @@ import com.msc.demo_mvvm.base.activity.BaseActivity
 import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.admob.NativeAdmob
 import com.msc.demo_mvvm.component.permission.PermissionActivity
-import com.msc.demo_mvvm.databinding.ActivityOnboardingBinding
+import com.msc.demo_mvvm.databinding.ActivityOnboardingClone2Binding
 import com.msc.demo_mvvm.utils.NativeAdmobUtils
 import com.msc.demo_mvvm.utils.NetworkUtil
 import com.msc.demo_mvvm.utils.SpManager
@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>() {
+class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
 
     @Inject
     lateinit var spManager: SpManager
@@ -30,8 +30,8 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>() {
         }
     }
 
-    override fun provideViewBinding(): ActivityOnboardingBinding =
-        ActivityOnboardingBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivityOnboardingClone2Binding =
+        ActivityOnboardingClone2Binding.inflate(layoutInflater)
 
     private val onBoardingAdapter = OnBoardingAdapter()
     private var currentPosition = 0

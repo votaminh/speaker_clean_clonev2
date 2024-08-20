@@ -7,9 +7,9 @@ import android.content.Intent
 import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.base.activity.BaseActivity
 import com.msc.demo_mvvm.component.test_speaker.TestSpeakerActivity
-import com.msc.demo_mvvm.databinding.ActivityAutoBinding
+import com.msc.demo_mvvm.databinding.ActivityAutoClone2Binding
 
-class AutoCleanActivity : BaseActivity<ActivityAutoBinding>() {
+class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
 
     private var aniSpeaker : ValueAnimator? = null
 
@@ -23,8 +23,8 @@ class AutoCleanActivity : BaseActivity<ActivityAutoBinding>() {
 
     }
 
-    override fun provideViewBinding(): ActivityAutoBinding {
-        return ActivityAutoBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivityAutoClone2Binding {
+        return ActivityAutoClone2Binding.inflate(layoutInflater)
     }
 
     override fun initViews() {

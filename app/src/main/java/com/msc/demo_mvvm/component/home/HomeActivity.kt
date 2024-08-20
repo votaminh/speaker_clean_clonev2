@@ -4,17 +4,18 @@ import android.app.Activity
 import android.content.Intent
 import com.msc.demo_mvvm.base.activity.BaseActivity
 import com.msc.demo_mvvm.component.auto.AutoCleanActivity
+import com.msc.demo_mvvm.component.blower.BlowerActivity
 import com.msc.demo_mvvm.component.manual.ManualCleanerActivity
 import com.msc.demo_mvvm.component.setting.SettingActivity
 import com.msc.demo_mvvm.component.vibrate.VibrateCleanActivity
-import com.msc.demo_mvvm.databinding.ActivityMainBinding
+import com.msc.demo_mvvm.databinding.ActivityMainClone2Binding
 import com.msc.demo_mvvm.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class HomeActivity : BaseActivity<ActivityMainBinding>() {
+class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
 
     @Inject
     lateinit var spManager: SpManager
@@ -26,8 +27,8 @@ class HomeActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
-    override fun provideViewBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivityMainClone2Binding {
+        return ActivityMainClone2Binding.inflate(layoutInflater)
     }
 
     override fun initViews() {
@@ -49,7 +50,7 @@ class HomeActivity : BaseActivity<ActivityMainBinding>() {
                 VibrateCleanActivity.start(this@HomeActivity)
             }
             blower.setOnClickListener {
-                showToast("blower")
+                BlowerActivity.start(this@HomeActivity)
             }
         }
     }

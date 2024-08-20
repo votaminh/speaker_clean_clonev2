@@ -3,9 +3,9 @@ package com.msc.demo_mvvm.component.vibrate
 import android.app.Activity
 import android.content.Intent
 import com.msc.demo_mvvm.base.activity.BaseActivity
-import com.msc.demo_mvvm.databinding.ActivityVibrateBinding
+import com.msc.demo_mvvm.databinding.ActivityVibrateClone2Binding
 
-class VibrateCleanActivity : BaseActivity<ActivityVibrateBinding>() {
+class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
 
     companion object {
         fun start(activity : Activity){
@@ -13,8 +13,8 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateBinding>() {
         }
     }
 
-    override fun provideViewBinding(): ActivityVibrateBinding {
-        return ActivityVibrateBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivityVibrateClone2Binding {
+        return ActivityVibrateClone2Binding.inflate(layoutInflater)
     }
 
     override fun initViews() {

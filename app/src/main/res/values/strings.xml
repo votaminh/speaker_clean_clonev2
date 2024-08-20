@@ -73,4 +73,6 @@
     <string name="txt_frequency">Frequency</string>
     <string name="txt_normal">Normal</string>
     <string name="txt_strong">Strong</string>
+    <string name="txt_boots">Boots</string>
+    <string name="txt_low">Low</string>
 </resources>

@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.msc.demo_mvvm.admob.NameRemoteAdmob
 import com.msc.demo_mvvm.base.activity.BaseActivity
 import com.msc.demo_mvvm.component.home.HomeActivity
-import com.msc.demo_mvvm.databinding.ActivityPermissonBinding
+import com.msc.demo_mvvm.databinding.ActivityPermissonClone2Binding
 import com.msc.demo_mvvm.utils.NativeAdmobUtils
 import com.msc.demo_mvvm.utils.PermissionUtils
 import com.msc.demo_mvvm.utils.SpManager
@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PermissionActivity : BaseActivity<ActivityPermissonBinding>() {
+class PermissionActivity : BaseActivity<ActivityPermissonClone2Binding>() {
 
     @Inject
     lateinit var spManager: SpManager
@@ -30,8 +30,8 @@ class PermissionActivity : BaseActivity<ActivityPermissonBinding>() {
         }
     }
 
-    override fun provideViewBinding(): ActivityPermissonBinding {
-        return ActivityPermissonBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivityPermissonClone2Binding {
+        return ActivityPermissonClone2Binding.inflate(layoutInflater)
     }
 
     override fun initViews() {

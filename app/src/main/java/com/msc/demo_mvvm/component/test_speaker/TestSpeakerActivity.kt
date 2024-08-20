@@ -3,9 +3,9 @@ package com.msc.demo_mvvm.component.test_speaker
 import android.app.Activity
 import android.content.Intent
 import com.msc.demo_mvvm.base.activity.BaseActivity
-import com.msc.demo_mvvm.databinding.ActivityTestSpeakerBinding
+import com.msc.demo_mvvm.databinding.ActivityTestSpeakerClone2Binding
 
-class TestSpeakerActivity : BaseActivity<ActivityTestSpeakerBinding>() {
+class TestSpeakerActivity : BaseActivity<ActivityTestSpeakerClone2Binding>() {
 
     companion object {
         fun start(activity : Activity){
@@ -13,8 +13,8 @@ class TestSpeakerActivity : BaseActivity<ActivityTestSpeakerBinding>() {
         }
     }
 
-    override fun provideViewBinding(): ActivityTestSpeakerBinding {
-        return ActivityTestSpeakerBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivityTestSpeakerClone2Binding {
+        return ActivityTestSpeakerClone2Binding.inflate(layoutInflater)
     }
 
     override fun initViews() {
