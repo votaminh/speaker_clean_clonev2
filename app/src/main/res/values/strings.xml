@@ -70,4 +70,5 @@
     <string name="txt_test_speaker">Test Speaker</string>
     <string name="txt_test_speaker_message"><![CDATA[Click on below play button & check your speaker]]></string>
     <string name="txt_volume_boost">Volume Boost</string>
+    <string name="txt_frequency">Frequency</string>
 </resources>
