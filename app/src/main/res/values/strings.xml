@@ -8,12 +8,12 @@
     <string name="french">French</string>
     <string name="portuguese">Portuguese</string>
 
-    <string name="onboarding_title1">Animal sounds</string>
-    <string name="onboarding_intro1">Variety of different realistic animal sounds to choose from</string>
-    <string name="onboarding_title2">Set as ringtone</string>
-    <string name="onboarding_intro2">Set ringtones, contact ringtones, alarm sounds,…</string>
-    <string name="onboarding_title3">Each contact person</string>
-    <string name="onboarding_intro3">Set a different ringtone for each contact</string>
+    <string name="onboarding_title1">Is Your Phone Wet?</string>
+    <string name="onboarding_intro1">Water and dust affect sound quality. Speaker Cleaner fixes it fast!</string>
+    <string name="onboarding_title2">Easy Auto Cleaner for Your Speakers</string>
+    <string name="onboarding_intro2">Tap to let Auto Cleaner scan and clean your speakers. No more dirt worries!</string>
+    <string name="onboarding_title3">Personalized Cleaning Controls</string>
+    <string name="onboarding_intro3">Manual Cleaner offers control, Vibrate Cleaner uses vibrations to clear dust.</string>
 
     <string name="txt_categories">Categories</string>
     <string name="txt_favourite">Favourite</string>
