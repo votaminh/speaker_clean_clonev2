@@ -127,15 +127,20 @@
             android:layout_marginLeft="@dimen/size10"
             />
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/size20"
         >
 
         <ImageView
+            android:id="@+id/imvBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
