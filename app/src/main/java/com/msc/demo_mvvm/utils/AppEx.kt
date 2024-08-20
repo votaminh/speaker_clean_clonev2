@@ -33,4 +33,12 @@ object AppEx {
         config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
     }
+
+    fun range(process: Int, start: Float, end: Float): Float {
+        return (end - start) * process / 100 + start
+    }
+
+    fun invertRange(values: Float, start: Float, end: Float): Float {
+        return (values - start) * 100 / (end - start)
+    }
 }

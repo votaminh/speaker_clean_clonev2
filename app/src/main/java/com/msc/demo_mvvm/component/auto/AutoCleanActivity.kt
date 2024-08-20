@@ -92,13 +92,9 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
                 viewBinding.tvPercent.text = "$it %"
 //                viewBinding.arcView.setProgress(it.toFloat())
 
-//                if (it == 100) {
-//                    activity?.let {
-//                        (activity as MainActivity).showInter{
-//                            TestSpeakerActivity.start(requireActivity())
-//                        }
-//                    }
-//                }
+                if (it == 100) {
+                    TestSpeakerActivity.start(this@AutoCleanActivity)
+                }
             }
 
             sourceAudio.observe(this@AutoCleanActivity) {

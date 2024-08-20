@@ -8,8 +8,10 @@ import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.base.activity.BaseActivity
+import com.msc.demo_mvvm.component.auto.auto.AutoThreadAudio
 import com.msc.demo_mvvm.component.test_speaker.TestSpeakerActivity
 import com.msc.demo_mvvm.databinding.ActivityManualCleanerClone2Binding
+import com.msc.demo_mvvm.utils.AppEx.range
 import com.msc.speaker_cleaner.domain.layer.SourceAudio
 import com.msc.speaker_cleaner.domain.layer.StateAudio
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,23 +39,24 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
                 viewModel.start()
             }
 
-//            sbVolume.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-//                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-//                    viewModel.setFrequency(
-//                        p1.range(
-//                            AutoThreadAudio.MIN_FREQUENCY.toFloat(),
-//                            AutoThreadAudio.MAX_FREQUENCY.toFloat()
-//                        )
-//                    )
-//                }
-//
-//                override fun onStartTrackingTouch(p0: SeekBar?) {
-//                }
-//
-//                override fun onStopTrackingTouch(p0: SeekBar?) {
-//                }
-//
-//            })
+            sbVolume.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                    viewModel.setFrequency(
+                        range(
+                            p1,
+                            AutoThreadAudio.MIN_FREQUENCY.toFloat(),
+                            AutoThreadAudio.MAX_FREQUENCY.toFloat()
+                        )
+                    )
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                }
+
+            })
 
             tvFront.setOnClickListener {
                 viewModel.setFront()
@@ -92,7 +95,7 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
             }
 
             frequencyAudioLive.observe(this@ManualCleanerActivity) {
-//                viewBinding.tvHZ.text = "$it HZ"
+                viewBinding.tvHZ.text = "$it HZ"
             }
 
             sourceAudioLive.observe(this@ManualCleanerActivity) {
