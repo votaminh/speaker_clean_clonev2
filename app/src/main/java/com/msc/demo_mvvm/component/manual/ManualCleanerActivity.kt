@@ -20,6 +20,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>() {
     private val viewModel: ManualViewModel by viewModels()
     private var canOpenTest = false
+    private var isUseFront = true
+
     companion object {
         fun start(activity : Activity){
             activity.startActivity(Intent(activity, ManualCleanerActivity::class.java))
@@ -58,11 +60,23 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
 
             })
 
+            viewModel.setFrequency(
+                range(
+                    50,
+                    AutoThreadAudio.MIN_FREQUENCY.toFloat(),
+                    AutoThreadAudio.MAX_FREQUENCY.toFloat()
+                )
+            )
+
             tvFront.setOnClickListener {
                 viewModel.setFront()
+                isUseFront = true
+                updateUiSpeaker()
             }
             tvEar.setOnClickListener {
                 viewModel.setEar()
+                isUseFront = false
+                updateUiSpeaker()
             }
         }
     }
@@ -114,6 +128,18 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun updateUiSpeaker() {
+        viewBinding.run {
+            if(isUseFront){
+                tvFront.animate().alpha(1f).setDuration(0).start()
+                tvEar.animate().alpha(0.3f).setDuration(0).start()
+            }else{
+                tvEar.animate().alpha(1f).setDuration(0).start()
+                tvFront.animate().alpha(0.3f).setDuration(0).start()
             }
         }
     }
