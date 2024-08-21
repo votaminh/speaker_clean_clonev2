@@ -75,4 +75,5 @@
     <string name="txt_strong">Strong</string>
     <string name="txt_boots">Boots</string>
     <string name="txt_low">Low</string>
+    <string name="txt_auto_clean_message">Please wait until complete the process for a better result.</string>
 </resources>

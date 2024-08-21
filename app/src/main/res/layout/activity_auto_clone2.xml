@@ -39,14 +39,31 @@
 
     </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="@dimen/size200"
         android:layout_height="@dimen/size200"
-        app:cardCornerRadius="@dimen/size100"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/size48"
+        android:layout_gravity="center_horizontal"
         >
 
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/arcView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:progress="50"
+            app:indicatorSize="@dimen/size190"
+            app:trackThickness="@dimen/size20"
+            android:layout_centerInParent="true"
+            app:trackColor="@color/white"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/size25"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_insize_auto_clean"
+            />
         <TextView
             android:id="@+id/tvPercent"
             android:layout_width="wrap_content"
@@ -55,9 +72,9 @@
             android:textSize="@dimen/size35"
             android:layout_gravity="center"
             android:textColor="@color/app_main"
+            android:layout_centerInParent="true"
             />
-
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/imvPlay"
@@ -71,6 +88,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/lnBtnFrontEar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size44"
         android:orientation="horizontal"
@@ -104,4 +122,15 @@
             />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvContAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_auto_clean_message"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size12"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/size20"
+        android:layout_marginTop="@dimen/size20"
+        />
 </LinearLayout>

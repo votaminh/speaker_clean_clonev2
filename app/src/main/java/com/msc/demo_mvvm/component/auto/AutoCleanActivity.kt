@@ -11,6 +11,8 @@ import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.base.activity.BaseActivity
 import com.msc.demo_mvvm.component.test_speaker.TestSpeakerActivity
 import com.msc.demo_mvvm.databinding.ActivityAutoClone2Binding
+import com.msc.demo_mvvm.utils.ViewEx.gone
+import com.msc.demo_mvvm.utils.ViewEx.visible
 import com.msc.speaker_cleaner.domain.layer.SourceAudio
 import com.msc.speaker_cleaner.domain.layer.StateAudio
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +38,10 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
 
         viewBinding.run {
             viewBinding.run {
+                imvBack.setOnClickListener {
+                    finish()
+                }
+
                 imvPlay.setOnClickListener {
                     viewModel.start()
                 }
@@ -76,21 +82,21 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
                 when (it) {
                     StateAudio.PLAYING -> {
                         viewBinding.imvPlay.setImageResource(R.drawable.ic_pause)
-//                        viewBinding.tvContAuto.visibility = View.VISIBLE
-//                        viewBinding.lnBtnFrontEar.visibility = View.GONE
+                        viewBinding.tvContAuto.visible()
+                        viewBinding.lnBtnFrontEar.gone()
                     }
 
                     StateAudio.STOP -> {
                         viewBinding.imvPlay.setImageResource(R.drawable.ic_play)
-//                        viewBinding.tvContAuto.visibility = View.GONE
-//                        viewBinding.lnBtnFrontEar.visibility = View.VISIBLE
+                        viewBinding.tvContAuto.gone()
+                        viewBinding.lnBtnFrontEar.visible()
                     }
                 }
             }
 
             percentCleaner.observe(this@AutoCleanActivity) {
                 viewBinding.tvPercent.text = "$it %"
-//                viewBinding.arcView.setProgress(it.toFloat())
+                viewBinding.arcView.setProgress(it)
 
                 if (it == 100) {
                     TestSpeakerActivity.start(this@AutoCleanActivity)
