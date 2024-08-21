@@ -15,6 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
     val viewModel: VibrateViewModel by viewModels()
+    private var isUseFront = true
+
     companion object {
         fun start(activity : Activity){
             activity.startActivity(Intent(activity, VibrateCleanActivity::class.java))
@@ -31,8 +33,20 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
 
         viewBinding.apply {
             imvPlay.setOnClickListener { viewModel.start() }
-            tvNormal.setOnClickListener { viewModel.setInensity(IntensityVibrate.NORMAL) }
-            tvStrong.setOnClickListener { viewModel.setInensity(IntensityVibrate.STRONG) }
+            tvNormal.setOnClickListener {
+                viewModel.setInensity(IntensityVibrate.NORMAL)
+                isUseFront = true
+                updateUiSpeaker()
+            }
+            tvStrong.setOnClickListener {
+                viewModel.setInensity(IntensityVibrate.STRONG)
+                isUseFront = false
+                updateUiSpeaker()
+            }
+
+            imvBack.setOnClickListener {
+                finish()
+            }
         }
     }
 
@@ -62,15 +76,23 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
             intensityLive.observe(this@VibrateCleanActivity) {
                 when (it) {
                     IntensityVibrate.NORMAL -> {
-//                        viewBinding.btnNormal.isSelected = true
-//                        viewBinding.btnStrong.isSelected = false
                     }
 
                     IntensityVibrate.STRONG -> {
-//                        viewBinding.btnNormal.isSelected = false
-//                        viewBinding.btnStrong.isSelected = true
                     }
                 }
+            }
+        }
+    }
+
+    private fun updateUiSpeaker() {
+        viewBinding.run {
+            if(isUseFront){
+                tvNormal.animate().alpha(1f).setDuration(0).start()
+                tvStrong.animate().alpha(0.3f).setDuration(0).start()
+            }else{
+                tvNormal.animate().alpha(0.3f).setDuration(0).start()
+                tvStrong.animate().alpha(1f).setDuration(0).start()
             }
         }
     }
