@@ -7,7 +7,6 @@ import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.base.activity.BaseActivity
 import com.msc.demo_mvvm.component.test_speaker.TestSpeakerActivity
 import com.msc.demo_mvvm.databinding.ActivityVibrateClone2Binding
-import com.msc.speaker_cleaner.component.cleanervibrate.IntensityVibrate
 import com.msc.speaker_cleaner.component.cleanervibrate.StateVibrateClone2
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -10,7 +10,6 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
-import com.msc.speaker_cleaner.component.cleanervibrate.IntensityVibrate
 import com.msc.speaker_cleaner.component.cleanervibrate.StateVibrateClone2
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext

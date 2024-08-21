@@ -1,4 +1,4 @@
-package com.msc.speaker_cleaner.component.cleanervibrate
+package com.msc.demo_mvvm.component.vibrate
 
 enum class IntensityVibrate {
     NORMAL_CLONE2,

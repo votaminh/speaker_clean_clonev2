@@ -76,4 +76,5 @@
     <string name="txt_boots">Boots</string>
     <string name="txt_low">Low</string>
     <string name="txt_auto_clean_message">Please wait until complete the process for a better result.</string>
+    <string name="if_you_didn_mess">If you didn’t get the desired results \ntry another method.</string>
 </resources>

@@ -45,22 +45,20 @@
         app:cardCornerRadius="@dimen/size100"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/size20"
+        app:cardBackgroundColor="@color/transparent"
         >
 
-        <TextView
-            android:id="@+id/tvPercent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0%"
-            android:textSize="@dimen/size35"
-            android:layout_gravity="center"
-            android:textColor="@color/app_main"
-            />
+        <ImageView
+            android:id="@+id/ivPlate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:src="@drawable/img_dan" />
 
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/imvPlay"
+        android:id="@+id/btnPlayAndPause"
         android:layout_width="@dimen/size60"
         android:layout_height="@dimen/size60"
         android:src="@drawable/ic_play"
@@ -71,6 +69,7 @@
         />
 
     <TextView
+        android:id="@+id/tvContTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_test_speaker_message"
@@ -91,10 +90,14 @@
         />
 
     <SeekBar
+        android:id="@+id/sbVolume"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/size30"
         android:progress="50"
         android:layout_marginTop="@dimen/size5"
+        android:progressBackgroundTint="@color/white"
+        android:thumbTint="@color/white"
+        android:progressTint="@color/white"
         />
 </LinearLayout>
