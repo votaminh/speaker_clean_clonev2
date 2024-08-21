@@ -3,18 +3,17 @@ package com.msc.demo_mvvm.component.vibrate
 import android.app.Activity
 import android.content.Intent
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import com.msc.demo_mvvm.R
 import com.msc.demo_mvvm.base.activity.BaseActivity
 import com.msc.demo_mvvm.component.test_speaker.TestSpeakerActivity
 import com.msc.demo_mvvm.databinding.ActivityVibrateClone2Binding
 import com.msc.speaker_cleaner.component.cleanervibrate.IntensityVibrate
-import com.msc.speaker_cleaner.component.cleanervibrate.StateVibrate
+import com.msc.speaker_cleaner.component.cleanervibrate.StateVibrateClone2
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
-    val viewModel: VibrateViewModel by viewModels()
+    val viewModel: VibrateViewModelClone2 by viewModels()
     private var isUseFront = true
 
     companion object {
@@ -34,12 +33,12 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
         viewBinding.apply {
             imvPlay.setOnClickListener { viewModel.start() }
             tvNormal.setOnClickListener {
-                viewModel.setInensity(IntensityVibrate.NORMAL)
+                viewModel.setInensity(IntensityVibrate.NORMAL_CLONE2)
                 isUseFront = true
                 updateUiSpeaker()
             }
             tvStrong.setOnClickListener {
-                viewModel.setInensity(IntensityVibrate.STRONG)
+                viewModel.setInensity(IntensityVibrate.STRONG_CLONE2)
                 isUseFront = false
                 updateUiSpeaker()
             }
@@ -56,11 +55,11 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
         viewModel.run {
             stateLive.observe(this@VibrateCleanActivity) {
                 when (it) {
-                    StateVibrate.PLAYING -> {
+                    StateVibrateClone2.PLAYING -> {
                         viewBinding.imvPlay.setImageResource(R.drawable.ic_pause)
                     }
 
-                    StateVibrate.STOP -> {
+                    StateVibrateClone2.STOP -> {
                         viewBinding.imvPlay.setImageResource(R.drawable.ic_play)
                     }
                 }
@@ -75,10 +74,10 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
 
             intensityLive.observe(this@VibrateCleanActivity) {
                 when (it) {
-                    IntensityVibrate.NORMAL -> {
+                    IntensityVibrate.NORMAL_CLONE2 -> {
                     }
 
-                    IntensityVibrate.STRONG -> {
+                    IntensityVibrate.STRONG_CLONE2 -> {
                     }
                 }
             }
