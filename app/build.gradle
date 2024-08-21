@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace 'com.msc.demo_mvvm'
+    namespace 'com.msc.blower_clean'
     compileSdk 34
 
     defaultConfig {

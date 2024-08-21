@@ -74,7 +74,7 @@
         android:layout_marginTop="@dimen/size20"
         >
 
-        <com.msc.demo_mvvm.widget.Relative1Per1
+        <com.msc.blower_clean.widget.Relative1Per1
             android:id="@+id/auto"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -115,9 +115,9 @@
 
             </androidx.cardview.widget.CardView>
 
-        </com.msc.demo_mvvm.widget.Relative1Per1>
+        </com.msc.blower_clean.widget.Relative1Per1>
 
-        <com.msc.demo_mvvm.widget.Relative1Per1
+        <com.msc.blower_clean.widget.Relative1Per1
             android:id="@+id/manual"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -156,7 +156,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-        </com.msc.demo_mvvm.widget.Relative1Per1>
+        </com.msc.blower_clean.widget.Relative1Per1>
 
     </LinearLayout>
     <LinearLayout
@@ -166,7 +166,7 @@
         android:layout_marginHorizontal="@dimen/size20"
         android:layout_marginTop="@dimen/size20"
         >
-        <com.msc.demo_mvvm.widget.Relative1Per1
+        <com.msc.blower_clean.widget.Relative1Per1
             android:id="@+id/vibrate"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -205,8 +205,8 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-        </com.msc.demo_mvvm.widget.Relative1Per1>
-        <com.msc.demo_mvvm.widget.Relative1Per1
+        </com.msc.blower_clean.widget.Relative1Per1>
+        <com.msc.blower_clean.widget.Relative1Per1
             android:id="@+id/blower"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -247,7 +247,7 @@
 
             </androidx.cardview.widget.CardView>
 
-        </com.msc.demo_mvvm.widget.Relative1Per1>
+        </com.msc.blower_clean.widget.Relative1Per1>
 
     </LinearLayout>
 </LinearLayout>
