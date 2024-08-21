@@ -60,7 +60,7 @@
             android:layout_gravity="center"
             android:text="0%"
             android:textColor="@color/white"
-            android:textSize="@dimen/size35" />
+            android:textSize="@dimen/size25" />
 
     </RelativeLayout>
 
