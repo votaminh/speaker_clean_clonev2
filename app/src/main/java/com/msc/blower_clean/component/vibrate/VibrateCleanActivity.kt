@@ -1,8 +1,16 @@
 package com.msc.blower_clean.component.vibrate
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.os.CountDownTimer
+import android.os.VibrationEffect
+import android.os.Vibrator
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import com.msc.blower_clean.R
 import com.msc.blower_clean.base.activity.BaseActivity
 import com.msc.blower_clean.component.test_speaker.TestSpeakerActivity
@@ -12,8 +20,18 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
-    val viewModel: VibrateViewModelClone2 by viewModels()
     private var isUseFront = true
+
+    var g = 50000L
+    var h = 500L
+    var i: Int = 150
+
+    val stateLive = MutableLiveData(StateVibrateClone2.STOP)
+    val intensityLive = MutableLiveData(IntensityVibrate.NORMAL_CLONE2)
+    val percentLive = MutableLiveData(0)
+
+    private var countDownTimer : CountDownTimer? = null
+
 
     companion object {
         fun start(activity : Activity){
@@ -27,17 +45,16 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
 
     override fun initViews() {
         super.initViews()
-        lifecycle.addObserver(viewModel)
 
         viewBinding.apply {
-            imvPlay.setOnClickListener { viewModel.start() }
+            imvPlay.setOnClickListener { start() }
             tvNormal.setOnClickListener {
-                viewModel.setInensity(IntensityVibrate.NORMAL_CLONE2)
+                setInensity(IntensityVibrate.NORMAL_CLONE2)
                 isUseFront = true
                 updateUiSpeaker()
             }
             tvStrong.setOnClickListener {
-                viewModel.setInensity(IntensityVibrate.STRONG_CLONE2)
+                setInensity(IntensityVibrate.STRONG_CLONE2)
                 isUseFront = false
                 updateUiSpeaker()
             }
@@ -51,7 +68,7 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
     override fun initObserver() {
         super.initObserver()
 
-        viewModel.run {
+        run {
             stateLive.observe(this@VibrateCleanActivity) {
                 when (it) {
                     StateVibrateClone2.PLAYING -> {
@@ -93,5 +110,67 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
                 tvStrong.animate().alpha(1f).setDuration(0).start()
             }
         }
+    }
+
+    fun start(){
+
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
+
+        if(countDownTimer == null){
+            countDownTimer = object : CountDownTimer(g, h) {
+                override fun onTick(p0: Long) {
+
+                    val progress = ((g - p0) / g.toFloat()) * 100
+                    stateLive.postValue(StateVibrateClone2.PLAYING)
+                    percentLive.postValue(progress.toInt())
+
+                    if (Build.VERSION.SDK_INT >= 26) {
+                        vibrator?.vibrate(
+                            VibrationEffect.createOneShot(
+                                i.toLong(),
+                                -1
+                            )
+                        )
+                    } else {
+                        vibrator?.vibrate(i.toLong())
+                    }
+                }
+                override fun onFinish() {
+                    stateLive.postValue(StateVibrateClone2.STOP)
+                    percentLive.postValue(100)
+                }
+            }
+
+            countDownTimer?.start()
+            stateLive.postValue(StateVibrateClone2.PLAYING)
+        }else{
+            cancelVibrate()
+        }
+    }
+
+    fun cancelVibrate() {
+        countDownTimer?.run {
+            cancel()
+            countDownTimer = null
+            stateLive.postValue(StateVibrateClone2.STOP)
+            percentLive.postValue(0)
+        }
+    }
+
+    fun setInensity(intensity: IntensityVibrate) {
+        intensityLive.postValue(intensity)
+        when(intensity){
+            IntensityVibrate.NORMAL_CLONE2 -> {
+                i = 150
+            }
+            IntensityVibrate.STRONG_CLONE2 -> {
+                i = 500
+            }
+        }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    fun onActivityPause() {
+        cancelVibrate()
     }
 }
