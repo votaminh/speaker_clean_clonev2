@@ -4,9 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.widget.SeekBar
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import com.msc.blower_clean.R
 import com.msc.blower_clean.base.activity.BaseActivity
 import com.msc.blower_clean.component.auto.auto.AutoThreadAudio
+import com.msc.blower_clean.component.auto.auto.rv2
 import com.msc.blower_clean.component.test_speaker.TestSpeakerActivity
 import com.msc.blower_clean.databinding.ActivityManualCleanerClone2Binding
 import com.msc.blower_clean.utils.AppEx.range
@@ -16,9 +20,16 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>() {
-    private val viewModel: ManualViewModel by viewModels()
     private var canOpenTest = false
     private var isUseFront = true
+
+    private var autoThreadAudio: AutoThreadAudio? = null
+    private val rv2: rv2 =
+        rv2()
+
+    val stateAudio = MutableLiveData<StateAudio>()
+    val frequencyAudioLive = MutableLiveData<Int>()
+    val sourceAudioLive = MutableLiveData(SourceAudio.FRONT)
 
     companion object {
         fun start(activity : Activity){
@@ -32,16 +43,15 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
 
     override fun initViews() {
         super.initViews()
-        lifecycle.addObserver(viewModel)
 
         viewBinding.apply {
             imvPlay.setOnClickListener {
-                viewModel.start()
+                start()
             }
 
             sbVolume.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                    viewModel.setFrequency(
+                    setFrequency(
                         range(
                             p1,
                             AutoThreadAudio.MIN_FREQUENCY.toFloat(),
@@ -58,7 +68,7 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
 
             })
 
-            viewModel.setFrequency(
+            setFrequency(
                 range(
                     50,
                     AutoThreadAudio.MIN_FREQUENCY.toFloat(),
@@ -67,12 +77,12 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
             )
 
             tvFront.setOnClickListener {
-                viewModel.setFront()
+                setFront()
                 isUseFront = true
                 updateUiSpeaker()
             }
             tvEar.setOnClickListener {
-                viewModel.setEar()
+                setEar()
                 isUseFront = false
                 updateUiSpeaker()
             }
@@ -82,7 +92,7 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
     override fun initObserver() {
         super.initObserver()
 
-        viewModel.run {
+        run {
             stateAudio.observe(this@ManualCleanerActivity) {
                 when (it) {
                     StateAudio.PLAYING -> {
@@ -146,8 +156,64 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
         super.onResume()
 
         kotlin.runCatching {
-            viewModel.cancelAudio()
+            cancelAudio()
             canOpenTest = false
         }
+    }
+
+    fun start(){
+        if(autoThreadAudio == null){
+            autoThreadAudio =
+                AutoThreadAudio(
+                    this,
+                    rv2
+                )
+
+            rv2.a = (170.0) * 5.0
+            rv2.a(100)
+
+            autoThreadAudio?.run{
+                setVolume(100f)
+                val frequency = frequencyAudioLive.value
+                frequency?.let {
+                    setFrequency(it.toDouble())
+                }
+                if(sourceAudioLive.value == SourceAudio.EAR){
+                    useEarpiece()
+                }else{
+                    useSpeaker()
+                }
+                start()
+            }
+            stateAudio.postValue(StateAudio.PLAYING)
+        }else{
+            cancelAudio()
+        }
+    }
+
+    fun cancelAudio() {
+        autoThreadAudio?.stopAudio()
+        autoThreadAudio = null
+        stateAudio.postValue(StateAudio.STOP)
+    }
+
+    fun setFrequency(frequency: Float) {
+        autoThreadAudio?.setFrequency(frequency.toDouble())
+        frequencyAudioLive.postValue(frequency.toInt())
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    fun onActivityPause() {
+        cancelAudio()
+    }
+
+    fun setFront() {
+        sourceAudioLive.postValue(SourceAudio.FRONT)
+        autoThreadAudio?.useSpeaker()
+    }
+
+    fun setEar(){
+        sourceAudioLive.postValue(SourceAudio.EAR)
+        autoThreadAudio?.useEarpiece()
     }
 }
