@@ -73,10 +73,10 @@ class RemoteConfig {
                 putBooleanToSP(adsJson, NameRemoteAdmob.APP_RESUME)
                 putBooleanToSP(adsJson, NameRemoteAdmob.BANNER_COLAPSE)
                 putBooleanToSP(adsJson, NameRemoteAdmob.INTER_HOME)
+                putBooleanToSP(adsJson, NameRemoteAdmob.NATIVE_PERMISSION)
             }
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_CATEGORY)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_EXIT)
-//            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_PERMISSION)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_SPLASH)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_SPLASH)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_ALL)
