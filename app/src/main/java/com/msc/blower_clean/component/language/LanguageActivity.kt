@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.nativead.NativeAd
 import com.msc.blower_clean.admob.NameRemoteAdmob
 import com.msc.blower_clean.base.activity.BaseActivity
@@ -17,6 +18,7 @@ import com.msc.blower_clean.utils.AppEx.setAppLanguage
 import com.msc.blower_clean.utils.NativeAdmobUtils
 import com.msc.blower_clean.utils.NetworkUtil
 import com.msc.blower_clean.utils.SpManager
+import com.msc.blower_clean.utils.ViewEx.visible
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,8 +29,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
 
     @Inject
     lateinit var spManager: SpManager
-
-    var canShowNative = true
 
     override fun provideViewBinding(): ActivityLanguageClone2Binding {
         return ActivityLanguageClone2Binding.inflate(layoutInflater)
@@ -42,6 +42,8 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
             viewBinding.imvBack.visibility = View.GONE
         }
 
+        setStatusBarColor(ContextCompat.getColor(this, R.color.white), true)
+
         viewBinding.imvBack.setOnClickListener {
             finish()
         }
@@ -49,6 +51,8 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
         viewBinding.rclLanguage.adapter = languageAdapter
         languageAdapter.onClick = {
             languageAdapter.selectLanguage(it.languageCode)
+            showNativeS2()
+            viewBinding.ivDone.visible()
         }
         viewBinding.ivDone.setOnClickListener {
             languageAdapter.selectedLanguage()?.let { languageModel ->
@@ -81,10 +85,22 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
         }
     }
 
+    private fun showNativeS2() {
+        NativeAdmobUtils.languageNativeAdmob2Floor?.let { s2Native ->
+            if(s2Native.available()){
+                s2Native.nativeAdLive.observe(this@LanguageActivity){
+                    checkShowNative(s2Native)
+                }
+            }
+        }
+    }
+
     override fun initObserver() {
         viewModel.listLanguage.observe(this) {
             languageAdapter.setData(ArrayList(it))
-            languageAdapter.selectLanguage(spManager.getLanguage().languageCode)
+            spManager.getLanguage()?.let {
+                languageAdapter.selectLanguage(it.languageCode)
+            }
         }
 
         viewBinding.flAdplaceholder.visibility = View.GONE
@@ -93,20 +109,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
             NativeAdmobUtils.loadNativeLanguage()
         }
 
-        // Kiểm tra xem native 2floor đã load chưa, load rồi thì ưu tiên hiện luôn, nếu không thì observe ai load trước hiện trước
-        NativeAdmobUtils.languageNativeAdmob2Floor?.run {
-            if(available()){
-                checkShowNative(this)
-            }
-        }
-
         NativeAdmobUtils.languageNativeAdmobDefault?.run {
-            nativeAdLive?.observe(this@LanguageActivity){
-                checkShowNative(this)
-            }
-        }
-
-        NativeAdmobUtils.languageNativeAdmob2Floor?.run {
             nativeAdLive?.observe(this@LanguageActivity){
                 checkShowNative(this)
             }
@@ -114,8 +117,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
     }
 
     private fun checkShowNative(nativeAdmob: NativeAdmob) {
-        if(canShowNative && nativeAdmob.available() && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
-            canShowNative = false
+        if(nativeAdmob.available() && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
             viewBinding.flAdplaceholder.visibility = View.VISIBLE
             nativeAdmob.showNative(viewBinding.flAdplaceholder, null)
         }
@@ -139,5 +141,10 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
                 context.startActivity(it)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        NativeAdmobUtils.languageNativeAdmob2Floor?.reLoad()
     }
 }

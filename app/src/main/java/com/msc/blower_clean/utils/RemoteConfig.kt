@@ -67,10 +67,10 @@ class RemoteConfig {
             if(!adsConfig.isNullOrEmpty()){
                 val adsJson = JSONObject(adsConfig)
                 putBooleanToSP(adsJson, NameRemoteAdmob.INTER_SPLASH)
+                putBooleanToSP(adsJson, NameRemoteAdmob.NATIVE_LANGUAGE)
             }
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_HOME)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_CATEGORY)
-//            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_LANGUAGE)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_ONBOARD)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_EXIT)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_PERMISSION)
