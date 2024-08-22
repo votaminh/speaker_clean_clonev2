@@ -40,7 +40,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [ad_app_id: "ca-app-pub-7121787699260095~2308771709"]
 
-            buildConfigField "String", "open_resume", "\"\""
+            buildConfigField "String", "open_resume", "\"ca-app-pub-7121787699260095/7531240428\""
 
             buildConfigField "String", "inter_splash", "\"ca-app-pub-7121787699260095/1157403760\""
             buildConfigField "String", "inter_home", "\"\""
@@ -60,7 +60,7 @@ android {
         debug {
             manifestPlaceholders = [ad_app_id: "ca-app-pub-3940256099942544~3347511713"]
 
-            buildConfigField "String", "open_resume", "\"\""
+            buildConfigField "String", "open_resume", "\"ca-app-pub-3940256099942544/9257395921\""
 
             buildConfigField "String", "inter_splash", "\"ca-app-pub-3940256099942544/1033173712\""
             buildConfigField "String", "inter_home", "\"\""
