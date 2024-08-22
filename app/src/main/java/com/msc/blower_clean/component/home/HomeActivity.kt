@@ -6,7 +6,9 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import com.msc.blower_clean.BuildConfig
 import com.msc.blower_clean.admob.BannerAdmob
+import com.msc.blower_clean.admob.BaseAdmob
 import com.msc.blower_clean.admob.CollapsiblePositionType
+import com.msc.blower_clean.admob.InterAdmob
 import com.msc.blower_clean.admob.NameRemoteAdmob
 import com.msc.blower_clean.base.activity.BaseActivity
 import com.msc.blower_clean.component.auto.AutoCleanActivity
@@ -27,6 +29,8 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
     @Inject
     lateinit var spManager: SpManager
 
+    private var interAdmob : InterAdmob? = null
+
     companion object {
         const val REQUEST_PICKER_CONTACT = 211
         fun start(activity : Activity){
@@ -45,19 +49,29 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
 
         viewBinding.run {
             setting.setOnClickListener {
-                SettingActivity.start(this@HomeActivity)
+                showInter{
+                    SettingActivity.start(this@HomeActivity)
+                }
             }
             auto.setOnClickListener {
-                AutoCleanActivity.start(this@HomeActivity)
+                showInter{
+                    AutoCleanActivity.start(this@HomeActivity)
+                }
             }
             manual.setOnClickListener {
-                ManualCleanerActivity.start(this@HomeActivity)
+                showInter{
+                    ManualCleanerActivity.start(this@HomeActivity)
+                }
             }
             vibrate.setOnClickListener {
-                VibrateCleanActivity.start(this@HomeActivity)
+                showInter{
+                    VibrateCleanActivity.start(this@HomeActivity)
+                }
             }
             blower.setOnClickListener {
-                BlowerActivity.start(this@HomeActivity)
+                showInter{
+                    BlowerActivity.start(this@HomeActivity)
+                }
             }
         }
 
@@ -67,7 +81,7 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
             }
         })
 
-
+        loadInter()
         showBanner()
     }
 
@@ -77,6 +91,32 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
             bannerAdmob.showBanner(this@HomeActivity, BuildConfig.banner_collap_home, viewBinding.banner)
         }else{
             viewBinding.banner.visibility = View.GONE
+        }
+    }
+
+    private fun loadInter() {
+        if(SpManager.getInstance(this@HomeActivity).getBoolean(NameRemoteAdmob.INTER_HOME, true)){
+            interAdmob = InterAdmob(this, BuildConfig.inter_home)
+            interAdmob?.load(null)
+        }
+    }
+
+    fun showInter(nextAction : (() -> Unit)? = null){
+        if(SpManager.getInstance(this@HomeActivity).getBoolean(NameRemoteAdmob.INTER_HOME, true)){
+            interAdmob?.showInterstitial(this@HomeActivity, object : BaseAdmob.OnAdmobShowListener{
+                override fun onShow() {
+                    nextAction?.invoke()
+                    interAdmob?.load(null)
+                }
+
+                override fun onError(e: String?) {
+                    nextAction?.invoke()
+                    interAdmob?.load(null)
+                }
+
+            })
+        }else{
+            nextAction?.invoke()
         }
     }
 
