@@ -3,7 +3,10 @@ package com.msc.blower_clean.component.setting
 import android.app.Activity
 import android.content.Intent
 import com.msc.blower_clean.base.activity.BaseActivity
+import com.msc.blower_clean.component.language.LanguageActivity
 import com.msc.blower_clean.databinding.ActivitySettingCone2Binding
+import com.msc.blower_clean.utils.AppEx.openAppInStore
+import com.msc.blower_clean.utils.AppEx.showPolicyApp
 
 class SettingActivity : BaseActivity<ActivitySettingCone2Binding>() {
 
@@ -24,6 +27,16 @@ class SettingActivity : BaseActivity<ActivitySettingCone2Binding>() {
             imvBack.setOnClickListener {
                 finish()
             }
+            btnLanguage.setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@SettingActivity,
+                        LanguageActivity::class.java
+                    )
+                )
+            }
+            btnPrivacyPolicy.setOnClickListener { showPolicyApp() }
+            btnRateUs.setOnClickListener { openAppInStore() }
         }
     }
 }

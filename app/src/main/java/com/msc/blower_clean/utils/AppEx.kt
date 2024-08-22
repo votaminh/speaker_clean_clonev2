@@ -1,9 +1,11 @@
 package com.msc.blower_clean.utils
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
+import android.net.Uri
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.msc.blower_clean.R
@@ -50,5 +52,20 @@ object AppEx {
     }
     fun ImageView.tintColorRes(colorRes : Int){
         this.setColorFilter(ContextCompat.getColor(this.context, colorRes), PorterDuff.Mode.SRC_IN)
+    }
+
+    fun Context.showPolicyApp() {
+        val openURL = Intent(Intent.ACTION_VIEW)
+        openURL.data = Uri.parse("https://sites.google.com/view/speaker-cleaner1/trang-ch%E1%BB%A7")
+        startActivity(openURL)
+    }
+
+    fun Context.openAppInStore() {
+        val uri = Uri.parse("market://details?id=" + this.packageName)
+        val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
+        try {
+            startActivity(myAppLinkToMarket)
+        } catch (e: ActivityNotFoundException) {
+        }
     }
 }

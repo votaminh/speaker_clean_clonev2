@@ -49,6 +49,7 @@
         >
         
         <androidx.cardview.widget.CardView
+            android:id="@+id/btnRateUs"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardBackgroundColor="@color/app_main2"
@@ -101,6 +102,7 @@
         >
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btnLanguage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardBackgroundColor="@color/app_main2"
@@ -153,6 +155,7 @@
         >
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btnPrivacyPolicy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardBackgroundColor="@color/app_main2"
