@@ -48,10 +48,10 @@ android {
 
             buildConfigField "String", "native_lanugage_s2_all_price", "\"ca-app-pub-7121787699260095/8808298116\""
             buildConfigField "String", "native_language_2floor", "\"ca-app-pub-7121787699260095/8844322096\""
-            buildConfigField "String", "native_onboarding", "\"\""
+            buildConfigField "String", "native_onboarding", "\"ca-app-pub-7121787699260095/1101563446\""
             buildConfigField "String", "native_exit", "\"\""
             buildConfigField "String", "native_permission", "\"\""
-            buildConfigField "String", "native_full_screen", "\"\""
+            buildConfigField "String", "native_full_screen", "\"ca-app-pub-7121787699260095/6808820739\""
 
             buildConfigField "String", "banner_collap", "\"\""
             buildConfigField "String", "banner_splash", "\"\""
@@ -68,10 +68,10 @@ android {
 
             buildConfigField "String", "native_lanugage_s2_all_price", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "native_language_2floor", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "native_onboarding", "\"\""
+            buildConfigField "String", "native_onboarding", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "native_exit", "\"\""
             buildConfigField "String", "native_permission", "\"\""
-            buildConfigField "String", "native_full_screen", "\"\""
+            buildConfigField "String", "native_full_screen", "\"ca-app-pub-3940256099942544/2247696110\""
 
             buildConfigField "String", "banner_collap", "\"\""
             buildConfigField "String", "banner_splash", "\"\""
