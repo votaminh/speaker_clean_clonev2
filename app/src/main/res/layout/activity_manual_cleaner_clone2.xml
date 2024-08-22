@@ -64,40 +64,57 @@
 
     </RelativeLayout>
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size44"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="@dimen/size20"
-        android:layout_marginTop="@dimen/size20"
-        >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size20">
+        <LinearLayout
+            android:id="@+id/lnBtnFontEar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size44"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="@dimen/size20"
+            >
+
+            <TextView
+                android:id="@+id/tvFront"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/txt_front"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/bg_main_stroke_gray_round20"
+                android:layout_marginRight="@dimen/size10"
+                />
+
+            <TextView
+                android:id="@+id/tvEar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/txt_ear"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/bg_main_stroke_gray_round20"
+                android:layout_marginLeft="@dimen/size10"
+                android:alpha="0.3"
+                />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tvFront"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/txt_front"
+            android:id="@+id/tvIntro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_manual_clean_message"
             android:textColor="@color/white"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:background="@drawable/bg_main_stroke_gray_round20"
-            android:layout_marginRight="@dimen/size10"
+            android:layout_marginHorizontal="@dimen/size20"
+            android:textSize="@dimen/size14"
+            android:visibility="gone"
             />
-
-        <TextView
-            android:id="@+id/tvEar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/txt_ear"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:background="@drawable/bg_main_stroke_gray_round20"
-            android:layout_marginLeft="@dimen/size10"
-            android:alpha="0.3"
-            />
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"

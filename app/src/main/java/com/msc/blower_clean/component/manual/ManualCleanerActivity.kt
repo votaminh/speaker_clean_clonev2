@@ -14,6 +14,9 @@ import com.msc.blower_clean.component.auto.auto.rv2
 import com.msc.blower_clean.component.test_speaker.TestSpeakerActivity
 import com.msc.blower_clean.databinding.ActivityManualCleanerClone2Binding
 import com.msc.blower_clean.utils.AppEx.range
+import com.msc.blower_clean.utils.ViewEx.gone
+import com.msc.blower_clean.utils.ViewEx.invisible
+import com.msc.blower_clean.utils.ViewEx.visible
 import com.msc.speaker_cleaner.domain.layer.SourceAudio
 import com.msc.speaker_cleaner.domain.layer.StateAudio
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +48,11 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
         super.initViews()
 
         viewBinding.apply {
+
+            imvBack.setOnClickListener {
+                finish()
+            }
+
             imvPlay.setOnClickListener {
                 start()
             }
@@ -97,16 +105,15 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
                 when (it) {
                     StateAudio.PLAYING -> {
                         viewBinding.imvPlay.setImageResource(R.drawable.ic_pause)
-//                        viewBinding.tvIntro.text =
-//                            getString(R.string.run_23_message)
-//                        viewBinding.lnBtnFontEar.visibility = View.GONE
+                        viewBinding.lnBtnFontEar.invisible()
+                        viewBinding.tvIntro.visible()
                         canOpenTest = true
                     }
 
                     StateAudio.STOP -> {
                         viewBinding.imvPlay.setImageResource(R.drawable.ic_play)
-//                        viewBinding.tvIntro.text = getString(R.string.speaker)
-//                        viewBinding.lnBtnFontEar.visibility = View.VISIBLE
+                        viewBinding.lnBtnFontEar.visible()
+                        viewBinding.tvIntro.invisible()
 
                         if(canOpenTest){
                             canOpenTest = false

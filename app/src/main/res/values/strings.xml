@@ -77,4 +77,5 @@
     <string name="txt_low">Low</string>
     <string name="txt_auto_clean_message">Please wait until complete the process for a better result.</string>
     <string name="if_you_didn_mess">If you didn’t get the desired results \ntry another method.</string>
+    <string name="txt_manual_clean_message">Run 2-3 minutes with different frequency levels to get desired result.</string>
 </resources>
