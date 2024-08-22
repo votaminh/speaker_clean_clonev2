@@ -202,4 +202,11 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
             stopAudio()
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        kotlin.runCatching {
+            stopAudio()
+        }
+    }
 }

@@ -179,4 +179,11 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
     fun onActivityPause() {
         cancelVibrate()
     }
+
+    override fun onPause() {
+        super.onPause()
+        kotlin.runCatching {
+            cancelVibrate()
+        }
+    }
 }

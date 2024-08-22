@@ -223,4 +223,11 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
         sourceAudioLive.postValue(SourceAudio.EAR)
         autoThreadAudio?.useEarpiece()
     }
+
+    override fun onPause() {
+        super.onPause()
+        kotlin.runCatching {
+            autoThreadAudio?.stopAudio()
+        }
+    }
 }
