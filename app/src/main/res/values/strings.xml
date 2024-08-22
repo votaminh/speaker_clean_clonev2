@@ -78,4 +78,12 @@
     <string name="txt_auto_clean_message">Please wait until complete the process for a better result.</string>
     <string name="if_you_didn_mess">If you didn’t get the desired results \ntry another method.</string>
     <string name="txt_manual_clean_message">Run 2-3 minutes with different frequency levels to get desired result.</string>
+
+    <string name="txt_auto_cleaner">Auto cleaner</string>
+    <string name="txt_manual_cleaner">Manual cleaner</string>
+    <string name="txt_vibrate_cleaner">Vibrate cleaner</string>
+    <string name="txt_choise_feature">Choise your feature</string>
+    <string name="txt_feature_request_message">Please choose your favorite functions</string>
+    <string name="rate_title">We need your review to improve the application</string>
+    <string name="please_rate">Please rate now</string>
 </resources>
