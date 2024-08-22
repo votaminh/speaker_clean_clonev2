@@ -18,7 +18,7 @@ class OnBoardingAdapter : BaseAdapter<OnBoarding, ItemOnboardingBinding>() {
             }else{
                 layoutAdNative.invisible()
                 layoutOnboard.visible()
-//                tvMess.setText(item.resDescription)
+                tvIntro.setText(item.resDescription)
                 tvTitle.setText(item.resTitle)
                 imgOnBoarding.setImageResource(item.resImage)
             }
