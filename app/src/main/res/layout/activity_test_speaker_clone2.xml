@@ -76,6 +76,7 @@
         android:textColor="@color/gray2"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/size10"
+        android:gravity="center"
         />
 
     <TextView
