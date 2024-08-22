@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "899010413058",
-    "project_id": "animal-sounds-and-ringtones",
-    "storage_bucket": "animal-sounds-and-ringtones.appspot.com"
+    "project_number": "164157094205",
+    "project_id": "blower-cleaner-and-water-eject",
+    "storage_bucket": "blower-cleaner-and-water-eject.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:899010413058:android:a49e53784c1ba15ab79d1b",
+        "mobilesdk_app_id": "1:164157094205:android:31b136d5c662fa6a54ed54",
         "android_client_info": {
-          "package_name": "com.demo_mvvm"
+          "package_name": "com.watereject.blowercleaner.soundbooster"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAK0A9ZlWTX6immemjM0x2LBlO9cd29ggw"
+          "current_key": "AIzaSyBu8Wq-dj_Tlbc8eWPbo1lqcZ4iSxPPB-0"
         }
       ],
       "services": {
