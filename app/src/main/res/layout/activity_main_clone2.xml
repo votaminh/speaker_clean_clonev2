@@ -36,226 +36,253 @@
             />
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="@dimen/size20"
-        android:layout_marginTop="@dimen/size24"
-        android:background="@drawable/bg_main2_stroke_gray_round20"
-        >
-
-        <ImageView
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/image_banner"
-            android:layout_marginHorizontal="@dimen/size20"
-            android:layout_marginTop="@dimen/size16"
-            />
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_banner_title"
-            android:textColor="@color/white"
-            android:textSize="@dimen/size12"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/size5"
-            android:layout_marginBottom="@dimen/size16"
-            />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="@dimen/size20"
+                android:layout_marginTop="@dimen/size24"
+                android:background="@drawable/bg_main2_stroke_gray_round20"
+                >
 
-    <LinearLayout
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/image_banner"
+                    android:layout_marginHorizontal="@dimen/size20"
+                    android:layout_marginTop="@dimen/size16"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_banner_title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/size12"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size5"
+                    android:layout_marginBottom="@dimen/size16"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/size20"
+                android:layout_marginTop="@dimen/size20"
+                >
+
+                <com.msc.blower_clean.widget.Relative1Per1
+                    android:id="@+id/auto"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gradient_gray_transparent_round20"
+                    android:layout_marginRight="@dimen/size10"
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="#292f49"
+                        app:cardCornerRadius="@dimen/size20"
+                        android:layout_margin="@dimen/size1"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            >
+                            <ImageView
+                                android:layout_width="@dimen/size32"
+                                android:layout_height="@dimen/size32"
+                                android:src="@drawable/ic_auto"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/txt_auto_clean"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/size15"
+                                android:textSize="@dimen/size16"
+                                android:layout_marginHorizontal="@dimen/size10"
+                                android:gravity="center"
+                                />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </com.msc.blower_clean.widget.Relative1Per1>
+
+                <com.msc.blower_clean.widget.Relative1Per1
+                    android:id="@+id/manual"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gradient_gray_transparent_round20"
+                    android:layout_marginLeft="@dimen/size10"
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="#2b2644"
+                        app:cardCornerRadius="@dimen/size20"
+                        android:layout_margin="@dimen/size1"
+                        >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            >
+                            <ImageView
+                                android:layout_width="@dimen/size32"
+                                android:layout_height="@dimen/size32"
+                                android:src="@drawable/ic_manual"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/txt_manual_clean"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/size15"
+                                android:textSize="@dimen/size16"
+                                android:layout_marginHorizontal="@dimen/size10"
+                                android:gravity="center"
+                                />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </com.msc.blower_clean.widget.Relative1Per1>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/size20"
+                android:layout_marginTop="@dimen/size20"
+                >
+                <com.msc.blower_clean.widget.Relative1Per1
+                    android:id="@+id/vibrate"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gradient_gray_transparent_round20"
+                    android:layout_marginRight="@dimen/size10"
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="#2b2644"
+                        app:cardCornerRadius="@dimen/size20"
+                        android:layout_margin="@dimen/size1"
+                        >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            >
+                            <ImageView
+                                android:layout_width="@dimen/size32"
+                                android:layout_height="@dimen/size32"
+                                android:src="@drawable/ic_vibrate"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/txt_vibrate"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/size15"
+                                android:textSize="@dimen/size16"
+                                android:layout_marginHorizontal="@dimen/size10"
+                                android:gravity="center"
+                                />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </com.msc.blower_clean.widget.Relative1Per1>
+                <com.msc.blower_clean.widget.Relative1Per1
+                    android:id="@+id/blower"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gradient_gray_transparent_round20"
+                    android:layout_marginLeft="@dimen/size10"
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="#292f49"
+                        app:cardCornerRadius="@dimen/size20"
+                        android:layout_margin="@dimen/size1"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            >
+                            <ImageView
+                                android:layout_width="@dimen/size32"
+                                android:layout_height="@dimen/size32"
+                                android:src="@drawable/ic_blower"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/txt_blower"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/size15"
+                                android:textSize="@dimen/size16"
+                                android:layout_marginHorizontal="@dimen/size10"
+                                android:gravity="center"
+                                />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </com.msc.blower_clean.widget.Relative1Per1>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="@dimen/size20"
-        android:layout_marginTop="@dimen/size20"
-        >
+        android:background="@color/gray"
+        android:paddingTop="@dimen/size2"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <com.msc.blower_clean.widget.Relative1Per1
-            android:id="@+id/auto"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_gradient_gray_transparent_round20"
-            android:layout_marginRight="@dimen/size10"
-            >
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardBackgroundColor="#292f49"
-                app:cardCornerRadius="@dimen/size20"
-                android:layout_margin="@dimen/size1"
-                >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    >
-                    <ImageView
-                        android:layout_width="@dimen/size32"
-                        android:layout_height="@dimen/size32"
-                        android:src="@drawable/ic_auto"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txt_auto_clean"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/size15"
-                        android:textSize="@dimen/size16"
-                        android:layout_marginHorizontal="@dimen/size10"
-                        android:gravity="center"
-                        />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </com.msc.blower_clean.widget.Relative1Per1>
-
-        <com.msc.blower_clean.widget.Relative1Per1
-            android:id="@+id/manual"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_gradient_gray_transparent_round20"
-            android:layout_marginLeft="@dimen/size10"
-            >
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardBackgroundColor="#2b2644"
-                app:cardCornerRadius="@dimen/size20"
-                android:layout_margin="@dimen/size1"
-                >
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    >
-                    <ImageView
-                        android:layout_width="@dimen/size32"
-                        android:layout_height="@dimen/size32"
-                        android:src="@drawable/ic_manual"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txt_manual_clean"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/size15"
-                        android:textSize="@dimen/size16"
-                        android:layout_marginHorizontal="@dimen/size10"
-                        android:gravity="center"
-                        />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-        </com.msc.blower_clean.widget.Relative1Per1>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="@dimen/size20"
-        android:layout_marginTop="@dimen/size20"
-        >
-        <com.msc.blower_clean.widget.Relative1Per1
-            android:id="@+id/vibrate"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_gradient_gray_transparent_round20"
-            android:layout_marginRight="@dimen/size10"
-            >
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardBackgroundColor="#2b2644"
-                app:cardCornerRadius="@dimen/size20"
-                android:layout_margin="@dimen/size1"
-                >
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    >
-                    <ImageView
-                        android:layout_width="@dimen/size32"
-                        android:layout_height="@dimen/size32"
-                        android:src="@drawable/ic_vibrate"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txt_vibrate"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/size15"
-                        android:textSize="@dimen/size16"
-                        android:layout_marginHorizontal="@dimen/size10"
-                        android:gravity="center"
-                        />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-        </com.msc.blower_clean.widget.Relative1Per1>
-        <com.msc.blower_clean.widget.Relative1Per1
-            android:id="@+id/blower"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_gradient_gray_transparent_round20"
-            android:layout_marginLeft="@dimen/size10"
-            >
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardBackgroundColor="#292f49"
-                app:cardCornerRadius="@dimen/size20"
-                android:layout_margin="@dimen/size1"
-                >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    >
-                    <ImageView
-                        android:layout_width="@dimen/size32"
-                        android:layout_height="@dimen/size32"
-                        android:src="@drawable/ic_blower"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txt_blower"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/size15"
-                        android:textSize="@dimen/size16"
-                        android:layout_marginHorizontal="@dimen/size10"
-                        android:gravity="center"
-                        />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </com.msc.blower_clean.widget.Relative1Per1>
-
-    </LinearLayout>
+            app:adSize="BANNER"
+            app:adUnitId="4353" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </LinearLayout>

@@ -14,7 +14,7 @@ class NameRemoteAdmob {
 
         const val APP_RESUME = "app_resume"
 
-        const val BANNER_COLAPSE = "banner_collap"
+        const val BANNER_COLAPSE = "banner_collap_home"
         const val BANNER_SPLASH = "banner_splash"
     }
 }

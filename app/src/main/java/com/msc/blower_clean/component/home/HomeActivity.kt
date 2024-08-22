@@ -2,7 +2,12 @@ package com.msc.blower_clean.component.home
 
 import android.app.Activity
 import android.content.Intent
+import android.view.View
 import androidx.activity.OnBackPressedCallback
+import com.msc.blower_clean.BuildConfig
+import com.msc.blower_clean.admob.BannerAdmob
+import com.msc.blower_clean.admob.CollapsiblePositionType
+import com.msc.blower_clean.admob.NameRemoteAdmob
 import com.msc.blower_clean.base.activity.BaseActivity
 import com.msc.blower_clean.component.auto.AutoCleanActivity
 import com.msc.blower_clean.component.blower.BlowerActivity
@@ -61,6 +66,18 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
                 onBack()
             }
         })
+
+
+        showBanner()
+    }
+
+    private fun showBanner() {
+        if(SpManager.getInstance(this).getBoolean(NameRemoteAdmob.BANNER_COLAPSE, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.BOTTOM)
+            bannerAdmob.showBanner(this@HomeActivity, BuildConfig.banner_collap_home, viewBinding.banner)
+        }else{
+            viewBinding.banner.visibility = View.GONE
+        }
     }
 
     override fun onBack() {
