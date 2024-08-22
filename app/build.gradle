@@ -38,11 +38,11 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [ad_app_id: "ca-app-pub-3940256099942544~3347511713"]
+            manifestPlaceholders = [ad_app_id: "ca-app-pub-7121787699260095~2308771709"]
 
             buildConfigField "String", "open_resume", "\"\""
 
-            buildConfigField "String", "inter_splash", "\"\""
+            buildConfigField "String", "inter_splash", "\"ca-app-pub-7121787699260095/1157403760\""
             buildConfigField "String", "inter_home", "\"\""
             buildConfigField "String", "inter_category", "\"\""
 
@@ -62,7 +62,7 @@ android {
 
             buildConfigField "String", "open_resume", "\"\""
 
-            buildConfigField "String", "inter_splash", "\"\""
+            buildConfigField "String", "inter_splash", "\"ca-app-pub-3940256099942544/1033173712\""
             buildConfigField "String", "inter_home", "\"\""
             buildConfigField "String", "inter_category", "\"\""
 

@@ -10,6 +10,7 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.msc.blower_clean.App
 import com.msc.blower_clean.admob.NameRemoteAdmob
+import org.json.JSONObject
 
 class RemoteConfig {
 
@@ -62,25 +63,29 @@ class RemoteConfig {
     private fun updateConfig() {
         kotlin.runCatching {
             val remoteConfig = Firebase.remoteConfig
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_SPLASH)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_HOME)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_CATEGORY)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_LANGUAGE)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_ONBOARD)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_EXIT)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_PERMISSION)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_FULL_SCREEN)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.APP_RESUME)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_COLAPSE)
-            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_SPLASH)
+            val adsConfig = remoteConfig.getString("admob_config")
+            if(!adsConfig.isNullOrEmpty()){
+                val adsJson = JSONObject(adsConfig)
+                putBooleanToSP(adsJson, NameRemoteAdmob.INTER_SPLASH)
+            }
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_HOME)
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_CATEGORY)
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_LANGUAGE)
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_ONBOARD)
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_EXIT)
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_PERMISSION)
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_FULL_SCREEN)
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.APP_RESUME)
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_COLAPSE)
+//            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_SPLASH)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_SPLASH)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_ALL)
         }
     }
 
-    private fun putBooleanToSP(remoteConfig: FirebaseRemoteConfig, name: String) {
+    private fun putBooleanToSP(json : JSONObject, name: String) {
         val spManager = App.instance?.applicationContext?.let { SpManager.getInstance(it) }
-        val values = remoteConfig.getBoolean(name)
+        val values = json.getBoolean(name)
         spManager?.putBoolean(name, values)
         Log.i(TAG, "$name : $values")
     }
