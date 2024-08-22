@@ -54,7 +54,7 @@ android {
             buildConfigField "String", "native_full_screen", "\"ca-app-pub-7121787699260095/6808820739\""
 
             buildConfigField "String", "banner_collap_home", "\"ca-app-pub-7121787699260095/6050637793\""
-            buildConfigField "String", "banner_splash", "\"\""
+            buildConfigField "String", "banner_splash", "\"ca-app-pub-7121787699260095/1564597877\""
         }
 
         debug {
@@ -74,7 +74,7 @@ android {
             buildConfigField "String", "native_full_screen", "\"ca-app-pub-3940256099942544/2247696110\""
 
             buildConfigField "String", "banner_collap_home", "\"ca-app-pub-3940256099942544/2014213617\""
-            buildConfigField "String", "banner_splash", "\"\""
+            buildConfigField "String", "banner_splash", "\"ca-app-pub-3940256099942544/2014213617\""
         }
     }
     compileOptions {
