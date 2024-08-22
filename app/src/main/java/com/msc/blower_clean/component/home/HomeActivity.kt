@@ -2,6 +2,7 @@ package com.msc.blower_clean.component.home
 
 import android.app.Activity
 import android.content.Intent
+import androidx.activity.OnBackPressedCallback
 import com.msc.blower_clean.base.activity.BaseActivity
 import com.msc.blower_clean.component.auto.AutoCleanActivity
 import com.msc.blower_clean.component.blower.BlowerActivity
@@ -10,6 +11,7 @@ import com.msc.blower_clean.component.setting.SettingActivity
 import com.msc.blower_clean.component.vibrate.VibrateCleanActivity
 import com.msc.blower_clean.databinding.ActivityMainClone2Binding
 import com.msc.blower_clean.utils.SpManager
+import com.msc.blower_clean.utils.UtilRate
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -52,6 +54,18 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
             blower.setOnClickListener {
                 BlowerActivity.start(this@HomeActivity)
             }
+        }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                onBack()
+            }
+        })
+    }
+
+    override fun onBack() {
+        if(!UtilRate.showDialogRate(this@HomeActivity)){
+            finish()
         }
     }
 }
