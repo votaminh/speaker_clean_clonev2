@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#161A42">
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/contentNative"
@@ -40,7 +40,7 @@
                     android:id="@+id/ad_headline"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     tools:text="App name here"
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 tools:text="Style up to date with your ads check how your ads are performing"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginTop="@dimen/size5"
                 />
 
@@ -162,7 +162,7 @@
             android:layout_marginRight="@dimen/size10"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
-            app:cardBackgroundColor="#FFC107"
+            app:cardBackgroundColor="@color/app_main"
             app:cardCornerRadius="@dimen/size20"
             >
             <TextView

@@ -147,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/contentNative"
-                app:cardBackgroundColor="#FFC107"
+                app:cardBackgroundColor="@color/app_main"
                 app:cardCornerRadius="@dimen/size5"
                 >
                 <TextView
