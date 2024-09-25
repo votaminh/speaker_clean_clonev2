@@ -62,6 +62,9 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
                 if (currentPosition < onBoardingAdapter.getListData().size - 1) {
                     vpOnBoarding.setCurrentItem(currentPosition + 1, true)
                 } else {
+                    if(NetworkUtil.isOnline){
+                        NativeAdmobUtils.loadNativePermission()
+                    }
                     PermissionActivity.start(this@OnBoardingActivity)
                     finish()
                 }
@@ -85,10 +88,6 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
                     R.string.onboarding_intro3
                 )
             ))
-        }
-
-        if(NetworkUtil.isOnline){
-            NativeAdmobUtils.loadNativePermission()
         }
     }
 

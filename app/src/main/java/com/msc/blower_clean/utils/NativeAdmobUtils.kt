@@ -47,7 +47,7 @@ class NativeAdmobUtils {
         }
         fun loadNativePermission() {
             App.instance?.applicationContext?.let { context ->
-                if(SpManager.getInstance(context).getBoolean(NameRemoteAdmob.NATIVE_PERMISSION, true)){
+                if(SpManager.getInstance(context).getBoolean(NameRemoteAdmob.NATIVE_PERMISSION, true) && NetworkUtil.isOnline){
                     permissionNativeAdmob = NativeAdmob(
                         context,
                         BuildConfig.native_permission
