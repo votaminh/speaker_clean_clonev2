@@ -67,13 +67,13 @@ class NativeAdmobUtils {
 
                 onboardNativeAdmob2 = NativeAdmob(
                     context,
-                    BuildConfig.native_onboarding
+                    BuildConfig.native_onboarding2
                 )
                 onboardNativeAdmob2?.load(null)
 
                 onboardNativeAdmob3 = NativeAdmob(
                     context,
-                    BuildConfig.native_onboarding
+                    BuildConfig.native_onboarding3
                 )
                 onboardNativeAdmob3?.load(null)
 
