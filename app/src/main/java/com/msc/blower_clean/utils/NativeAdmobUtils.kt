@@ -30,17 +30,19 @@ class NativeAdmobUtils {
 
         fun loadNativeLanguage() {
             App.instance?.applicationContext?.let { context ->
-                languageNativeAdmobDefault = NativeAdmob(
-                    context,
-                    BuildConfig.native_lanugage_s2_all_price
-                )
-                languageNativeAdmobDefault?.load(null)
+                if(NetworkUtil.isOnline){
+                    languageNativeAdmobDefault = NativeAdmob(
+                        context,
+                        BuildConfig.native_lanugage_s2_all_price
+                    )
+                    languageNativeAdmobDefault?.load(null)
 
-                languageNativeAdmob2Floor = NativeAdmob(
-                    context,
-                    BuildConfig.native_language_2floor
-                )
-                languageNativeAdmob2Floor?.load(null)
+                    languageNativeAdmob2Floor = NativeAdmob(
+                        context,
+                        BuildConfig.native_language_2floor
+                    )
+                    languageNativeAdmob2Floor?.load(null)
+                }
             }
         }
         fun loadNativePermission() {

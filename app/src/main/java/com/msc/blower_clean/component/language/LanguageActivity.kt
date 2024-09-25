@@ -98,9 +98,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
     override fun initObserver() {
         viewModel.listLanguage.observe(this) {
             languageAdapter.setData(ArrayList(it))
-            spManager.getLanguage()?.let {
-                languageAdapter.selectLanguage(it.languageCode)
-            }
         }
 
         viewBinding.flAdplaceholder.visibility = View.GONE
