@@ -29,7 +29,9 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
     @Inject
     lateinit var spManager: SpManager
 
-//    private var interAdmob : InterAdmob? = null
+    private var interAdmob : InterAdmob? = null
+    private var latestInterShow: Long = 0
+    private var firstRequest = true
 
     companion object {
         const val REQUEST_PICKER_CONTACT = 211
@@ -49,27 +51,27 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
 
         viewBinding.run {
             setting.setOnClickListener {
-                showInter{
+                showInterAction{
                     SettingActivity.start(this@HomeActivity)
                 }
             }
             auto.setOnClickListener {
-                showInter{
+                showInterAction{
                     AutoCleanActivity.start(this@HomeActivity)
                 }
             }
             manual.setOnClickListener {
-                showInter{
+                showInterAction{
                     ManualCleanerActivity.start(this@HomeActivity)
                 }
             }
             vibrate.setOnClickListener {
-                showInter{
+                showInterAction{
                     VibrateCleanActivity.start(this@HomeActivity)
                 }
             }
             blower.setOnClickListener {
-                showInter{
+                showInterAction{
                     BlowerActivity.start(this@HomeActivity)
                 }
             }
@@ -95,31 +97,50 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
     }
 
     private fun loadInter() {
-//        if(SpManager.getInstance(this@HomeActivity).getBoolean(NameRemoteAdmob.INTER_HOME, true)){
-//            interAdmob = InterAdmob(this, BuildConfig.inter_home)
-//            interAdmob?.load(null)
-//        }
+        if(spManager.getBoolean(NameRemoteAdmob.inter_home, true)){
+            interAdmob = InterAdmob(this, BuildConfig.inter_home)
+            interAdmob?.load(object : BaseAdmob.OnAdmobLoadListener {
+                override fun onLoad() {
+                }
+
+                override fun onError(e: String?) {
+                }
+            })
+        }
     }
 
-    fun showInter(nextAction : (() -> Unit)? = null){
-//        if(SpManager.getInstance(this@HomeActivity).getBoolean(NameRemoteAdmob.INTER_HOME, true)){
-//            interAdmob?.showInterstitial(this@HomeActivity, object : BaseAdmob.OnAdmobShowListener{
-//                override fun onShow() {
-//                    nextAction?.invoke()
-//                    interAdmob?.load(null)
-//                }
-//
-//                override fun onError(e: String?) {
-//                    nextAction?.invoke()
-//                    interAdmob?.load(null)
-//                }
-//
-//            })
-//        }else{
-//            nextAction?.invoke()
-//        }
+    fun showInterAction(nextAction : (() -> Unit)? = null){
+        if(firstRequest){
+            firstRequest = false
+            nextAction?.invoke()
+            return
+        }
 
-        nextAction?.invoke()
+        if(latestInterShow == 0L){
+            latestInterShow = System.currentTimeMillis()
+        }else if(System.currentTimeMillis() - latestInterShow < 30000){
+            nextAction?.invoke()
+            return
+        }
+
+        latestInterShow = System.currentTimeMillis()
+
+        if(interAdmob == null || !spManager.getBoolean(NameRemoteAdmob.inter_home, true)){
+            nextAction?.invoke()
+        }else{
+            interAdmob?.showInterstitial(this, object : BaseAdmob.OnAdmobShowListener{
+                override fun onShow() {
+                    nextAction?.invoke()
+                    loadInter()
+                }
+
+                override fun onError(e: String?) {
+                    nextAction?.invoke()
+                    loadInter()
+                }
+
+            })
+        }
     }
 
     override fun onBack() {
