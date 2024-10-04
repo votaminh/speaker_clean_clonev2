@@ -70,6 +70,7 @@ class RemoteConfig {
                 putBooleanToSP(adsJson, NameRemoteAdmob.native_language)
                 putBooleanToSP(adsJson, NameRemoteAdmob.native_onboarding)
                 putBooleanToSP(adsJson, NameRemoteAdmob.native_freature)
+                putBooleanToSP(adsJson, NameRemoteAdmob.banner_home)
             }
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_CATEGORY)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_EXIT)

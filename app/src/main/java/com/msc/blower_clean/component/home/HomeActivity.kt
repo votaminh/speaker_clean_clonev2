@@ -86,12 +86,12 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
     }
 
     private fun showBanner() {
-//        if(SpManager.getInstance(this).getBoolean(NameRemoteAdmob.BANNER_COLAPSE, true)){
-//            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.BOTTOM)
-//            bannerAdmob.showBanner(this@HomeActivity, BuildConfig.banner_collap_home, viewBinding.banner)
-//        }else{
-//            viewBinding.banner.visibility = View.GONE
-//        }
+        if(SpManager.getInstance(this).getBoolean(NameRemoteAdmob.banner_home, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.BOTTOM)
+            bannerAdmob.showBanner(this@HomeActivity, BuildConfig.banner_home, viewBinding.banner)
+        }else{
+            viewBinding.banner.visibility = View.GONE
+        }
     }
 
     private fun loadInter() {
