@@ -61,7 +61,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
             }
         }
 
-//        NativeAdmobUtils.loadNativeOnboard()
+        NativeAdmobUtils.loadNativeOnboard()
     }
 
     private fun showNative2() {

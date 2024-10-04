@@ -14,6 +14,11 @@ class NativeAdmobUtils {
         @SuppressLint("StaticFieldLeak")
         var languageNative2: NativeAdmob? = null
 
+        @SuppressLint("StaticFieldLeak")
+        var onboardNativeAdmob1: NativeAdmob? = null
+        @SuppressLint("StaticFieldLeak")
+        var onboardNativeAdmob2: NativeAdmob? = null
+
         fun loadNativeLanguage() {
             if(NetworkUtil.isOnline){
                 App.instance?.applicationContext?.let { context ->
@@ -47,43 +52,42 @@ class NativeAdmobUtils {
                 }
                 }
             }
-        }
-        fun loadNativePermission() {
-//            App.instance?.applicationContext?.let { context ->
-////                if(SpManager.getInstance(context).getBoolean(NameRemoteAdmob.NATIVE_PERMISSION, true) && NetworkUtil.isOnline){
-////                    permissionNativeAdmob = NativeAdmob(
-////                        context,
-////                        BuildConfig.native_permission
-////                    )
-////                    permissionNativeAdmob?.load(null)
-////                }
-//            }
-        }
+
 
         fun loadNativeOnboard() {
-//            App.instance?.applicationContext?.let {context ->
-////                onboardNativeAdmob1 = NativeAdmob(
-////                    context,
-////                    BuildConfig.native_onboarding
-////                )
-////                onboardNativeAdmob1?.load(null)
-////
-////                onboardNativeAdmob2 = NativeAdmob(
-////                    context,
-////                    BuildConfig.native_onboarding2
-////                )
-////                onboardNativeAdmob2?.load(null)
-////
-////                onboardNativeAdmob3 = NativeAdmob(
-////                    context,
-////                    BuildConfig.native_onboarding3
-////                )
-////                onboardNativeAdmob3?.load(null)
-////
-////                onboardFullNativeAdmob = NativeAdmob(context, BuildConfig.native_full_screen)
-////                onboardFullNativeAdmob?.load(null)
-//            }
+            App.instance?.applicationContext?.let {context ->
+                SpManager.getInstance(context).putBoolean("first_native_onboarding", false)
+                onboardNativeAdmob1 = NativeAdmob(
+                    context,
+                    BuildConfig.native_onboarding_1_1
+                )
+
+                onboardNativeAdmob1?.load(object : BaseAdmob.OnAdmobLoadListener {
+                    override fun onLoad() {
+                    }
+
+                    override fun onError(e: String?) {
+                    }
+
+                })
+
+                onboardNativeAdmob2 = NativeAdmob(
+                    context,
+                    BuildConfig.native_onboarding_1_2
+                )
+                onboardNativeAdmob2?.load(object : BaseAdmob.OnAdmobLoadListener {
+                    override fun onLoad() {
+                    }
+
+                    override fun onError(e: String?) {
+                    }
+
+                })
+            }
         }
+
+        }
+
 
         fun loadNativeExit(){
 //            App.instance?.applicationContext?.let {context ->
