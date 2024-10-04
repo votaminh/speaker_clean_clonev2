@@ -15,6 +15,7 @@ import com.msc.blower_clean.R
 import com.msc.blower_clean.base.activity.BaseActivity
 import com.msc.blower_clean.component.test_speaker.TestSpeakerActivity
 import com.msc.blower_clean.databinding.ActivityVibrateClone2Binding
+import com.msc.blower_clean.utils.InterNativeUtils
 import com.msc.blower_clean.utils.ViewEx.invisible
 import com.msc.blower_clean.utils.ViewEx.visible
 import com.msc.speaker_cleaner.component.cleanervibrate.StateVibrateClone2
@@ -62,7 +63,9 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
             }
 
             imvBack.setOnClickListener {
-                finish()
+                InterNativeUtils.showInterAction(this@VibrateCleanActivity){
+                    finish()
+                }
             }
         }
     }

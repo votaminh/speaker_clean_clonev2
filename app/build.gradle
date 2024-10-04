@@ -77,6 +77,8 @@ android {
             buildConfigField "String", "banner_home", "\"ca-app-pub-3940256099942544/2014213617\""
 
             buildConfigField "String", "inter_home", "\"ca-app-pub-3940256099942544/1033173712\""
+
+            buildConfigField "String", "inter_back", "\"ca-app-pub-3940256099942544/1033173712\""
 //            buildConfigField "String", "inter_category", "\"\""
 //
 //            buildConfigField "String", "native_lanugage_s2_all_price", "\"ca-app-pub-3940256099942544/2247696110\""

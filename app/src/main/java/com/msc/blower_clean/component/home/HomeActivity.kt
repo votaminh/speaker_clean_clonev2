@@ -17,6 +17,7 @@ import com.msc.blower_clean.component.manual.ManualCleanerActivity
 import com.msc.blower_clean.component.setting.SettingActivity
 import com.msc.blower_clean.component.vibrate.VibrateCleanActivity
 import com.msc.blower_clean.databinding.ActivityMainClone2Binding
+import com.msc.blower_clean.utils.InterNativeUtils
 import com.msc.blower_clean.utils.SpManager
 import com.msc.blower_clean.utils.UtilRate
 import dagger.hilt.android.AndroidEntryPoint
@@ -85,6 +86,7 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
 
         loadInter()
         showBanner()
+        InterNativeUtils.loadInterBack()
     }
 
     private fun showBanner() {

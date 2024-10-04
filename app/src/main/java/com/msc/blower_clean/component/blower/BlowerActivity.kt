@@ -14,6 +14,7 @@ import com.msc.blower_clean.component.auto.auto.AutoThreadAudio
 import com.msc.blower_clean.component.auto.auto.rv2
 import com.msc.blower_clean.databinding.ActivityBlowerClone2Binding
 import com.msc.blower_clean.utils.AppEx.range
+import com.msc.blower_clean.utils.InterNativeUtils
 
 class BlowerActivity : BaseActivity<ActivityBlowerClone2Binding>() {
 
@@ -97,7 +98,9 @@ class BlowerActivity : BaseActivity<ActivityBlowerClone2Binding>() {
             }
 
             btnBack.setOnClickListener {
-                finish()
+                InterNativeUtils.showInterAction(this@BlowerActivity){
+                    finish()
+                }
             }
         }
     }

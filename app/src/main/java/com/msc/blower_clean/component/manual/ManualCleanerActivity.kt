@@ -14,6 +14,7 @@ import com.msc.blower_clean.component.auto.auto.rv2
 import com.msc.blower_clean.component.test_speaker.TestSpeakerActivity
 import com.msc.blower_clean.databinding.ActivityManualCleanerClone2Binding
 import com.msc.blower_clean.utils.AppEx.range
+import com.msc.blower_clean.utils.InterNativeUtils
 import com.msc.blower_clean.utils.ViewEx.gone
 import com.msc.blower_clean.utils.ViewEx.invisible
 import com.msc.blower_clean.utils.ViewEx.visible
@@ -50,7 +51,9 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
         viewBinding.apply {
 
             imvBack.setOnClickListener {
-                finish()
+                InterNativeUtils.showInterAction(this@ManualCleanerActivity){
+                    finish()
+                }
             }
 
             imvPlay.setOnClickListener {

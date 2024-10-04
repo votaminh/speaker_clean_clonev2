@@ -12,6 +12,7 @@ import com.msc.blower_clean.component.auto.auto.AutoThreadAudio
 import com.msc.blower_clean.component.auto.auto.rv2
 import com.msc.blower_clean.component.test_speaker.TestSpeakerActivity
 import com.msc.blower_clean.databinding.ActivityAutoClone2Binding
+import com.msc.blower_clean.utils.InterNativeUtils
 import com.msc.blower_clean.utils.ViewEx.gone
 import com.msc.blower_clean.utils.ViewEx.visible
 import com.msc.speaker_cleaner.domain.layer.SourceAudio
@@ -46,7 +47,9 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
         viewBinding.run {
             viewBinding.run {
                 imvBack.setOnClickListener {
-                    finish()
+                    InterNativeUtils.showInterAction(this@AutoCleanActivity){
+                        finish()
+                    }
                 }
 
                 imvPlay.setOnClickListener {

@@ -7,6 +7,7 @@ import com.msc.blower_clean.component.language.LanguageActivity
 import com.msc.blower_clean.databinding.ActivitySettingCone2Binding
 import com.msc.blower_clean.utils.AppEx.openAppInStore
 import com.msc.blower_clean.utils.AppEx.showPolicyApp
+import com.msc.blower_clean.utils.InterNativeUtils
 
 class SettingActivity : BaseActivity<ActivitySettingCone2Binding>() {
 
@@ -25,7 +26,9 @@ class SettingActivity : BaseActivity<ActivitySettingCone2Binding>() {
 
         viewBinding.run {
             imvBack.setOnClickListener {
-                finish()
+                InterNativeUtils.showInterAction(this@SettingActivity){
+                    finish()
+                }
             }
             btnLanguage.setOnClickListener {
                 startActivity(
