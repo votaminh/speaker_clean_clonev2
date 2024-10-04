@@ -64,8 +64,11 @@ android {
 
 //            buildConfigField "String", "open_resume", "\"ca-app-pub-3940256099942544/9257395921\""
             buildConfigField "String", "open_splash_high", "\"ca-app-pub-3940256099942544/9257395921\""
-//
             buildConfigField "String", "inter_splash", "\"ca-app-pub-3940256099942544/1033173712\""
+
+            buildConfigField "String", "native_language_1_1", "\"ca-app-pub-3940256099942544/2247696110\""
+            buildConfigField "String", "native_language_1_2", "\"ca-app-pub-3940256099942544/2247696110\""
+
 //            buildConfigField "String", "inter_home", "\"ca-app-pub-3940256099942544/1033173712\""
 //            buildConfigField "String", "inter_category", "\"\""
 //

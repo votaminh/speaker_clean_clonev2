@@ -57,19 +57,28 @@
         android:orientation="vertical"
         android:paddingTop="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/fl_adplaceholder"
+        app:layout_constraintBottom_toTopOf="@+id/rl_native"
         app:layout_constraintTop_toBottomOf="@id/toolbar_language" />
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/fl_adplaceholder"
+    <RelativeLayout
+        android:id="@+id/rl_native"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         >
         <include
-            android:id="@+id/native_ad_view"
-            layout="@layout/ad_unified_language"/>
+            android:id="@+id/fl_adplaceholder1"
+            layout="@layout/fl_native1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
 
-    </com.facebook.shimmer.ShimmerFrameLayout>
+        <include
+            android:id="@+id/fl_adplaceholder2"
+            layout="@layout/fl_native2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,29 +1,30 @@
 package com.msc.blower_clean.component.language
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
-import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
-import com.google.android.gms.ads.nativead.NativeAd
-import com.msc.blower_clean.admob.NameRemoteAdmob
-import com.msc.blower_clean.base.activity.BaseActivity
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.flash.light.component.language.LanguageAdapter
-import com.msc.blower_clean.component.onboarding.OnBoardingActivity
-import com.msc.blower_clean.R
+import com.msc.blower_clean.admob.BaseAdmob
+import com.msc.blower_clean.admob.NameRemoteAdmob
 import com.msc.blower_clean.admob.NativeAdmob
+import com.msc.blower_clean.base.activity.BaseActivity
 import com.msc.blower_clean.component.home.HomeActivity
+import com.msc.blower_clean.component.onboarding.OnBoardingActivity
 import com.msc.blower_clean.databinding.ActivityLanguageClone2Binding
-import com.msc.blower_clean.utils.AppEx.setAppLanguage
+import com.msc.blower_clean.domain.layer.LanguageModel
+import com.msc.blower_clean.utils.Constant
+import com.msc.blower_clean.utils.LocaleHelper
 import com.msc.blower_clean.utils.NativeAdmobUtils
-import com.msc.blower_clean.utils.NetworkUtil
 import com.msc.blower_clean.utils.SpManager
+import com.msc.blower_clean.utils.ViewEx.gone
 import com.msc.blower_clean.utils.ViewEx.visible
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
+    private var selectLanguageModel: LanguageModel? = null
     private val viewModel: LanguageViewModel by viewModels()
     private val languageAdapter = LanguageAdapter()
 
@@ -35,113 +36,87 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
     }
 
     override fun initViews() {
-        val fromSplash = intent.getBooleanExtra(KEY_FROM_SPLASH, false)
-        if (!fromSplash){
-            viewBinding.imvBack.visibility = View.VISIBLE
-        }else{
-            viewBinding.imvBack.visibility = View.GONE
-        }
+        val isFromSplash = intent.getBooleanExtra(Constant.KEY_INTENT_FROM_SPLASH, false)
 
-        setStatusBarColor(ContextCompat.getColor(this, R.color.white), true)
-
-        viewBinding.imvBack.setOnClickListener {
-            finish()
-        }
-
+        viewBinding.ivDone.gone()
         viewBinding.rclLanguage.adapter = languageAdapter
-        languageAdapter.onClick = {
-            languageAdapter.selectLanguage(it.languageCode)
-            showNativeS2()
+        languageAdapter.onClick = {languageModel ->
             viewBinding.ivDone.visible()
+            selectLanguageModel = languageModel
+            languageAdapter.selectLanguage(languageModel.languageCode)
+            showNative2()
         }
         viewBinding.ivDone.setOnClickListener {
-            languageAdapter.selectedLanguage()?.let { languageModel ->
-                spManager.saveLanguage(languageModel)
-                setAppLanguage(languageModel.languageCode)
-                val fromSplash = intent.getBooleanExtra(KEY_FROM_SPLASH, false)
-                if (fromSplash) {
-                    OnBoardingActivity.start(this)
-                    finish()
-                } else {
-                    startActivity(Intent(this, HomeActivity::class.java).also {
-                        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    })
-                }
+            if (selectLanguageModel == null) {
+                selectLanguageModel = languageAdapter.dataSet.find { it.selected }
+            }
+            selectLanguageModel?.let { it1 -> spManager.saveLanguage(it1) }
+            LocaleHelper.setLocale(this@LanguageActivity, language = selectLanguageModel?.languageCode ?: "en")
+            if (isFromSplash) {
+                OnBoardingActivity.start(this)
+                finish()
+            } else {
+                HomeActivity.start(this@LanguageActivity)
+                finish()
             }
         }
 
-        if(spManager.getShowOnBoarding()){
-            viewBinding.ivDone.setText(R.string.txt_next)
-        }
-
-        if (isTempNativeAd != null) {
-            isTempNativeAd = null
-        }
-
-        if (spManager.getShowOnBoarding() && NetworkUtil.isOnline) {
-//            if (spManager.getBoolean(NameRemoteAdmob.NATIVE_ONBOARD, true)) {
-//                NativeAdmobUtils.loadNativeOnboard()
-//            }
-        }
+//        NativeAdmobUtils.loadNativeOnboard()
     }
 
-    private fun showNativeS2() {
-//        NativeAdmobUtils.languageNativeAdmob2Floor?.let { s2Native ->
-//            if(s2Native.available()){
-//                s2Native.nativeAdLive.observe(this@LanguageActivity){
-//                    checkShowNative(s2Native)
-//                }
-//            }
-//        }
+    private fun showNative2() {
+        viewBinding.flAdplaceholder1.root.gone()
+        viewBinding.flAdplaceholder2.root.visible()
+
+        NativeAdmobUtils.languageNative2?.run {
+            nativeAdLive?.observe(this@LanguageActivity){
+                if(available()){
+                    showNativeAd(this, viewBinding.flAdplaceholder2.root)
+                }
+            }
+        }
     }
 
     override fun initObserver() {
         viewModel.listLanguage.observe(this) {
             languageAdapter.setData(ArrayList(it))
+//            languageAdapter.selectLanguage(spManager.getLanguage().languageCode)
         }
-//
-//        viewBinding.flAdplaceholder.visibility = View.GONE
-//
-//        if(NativeAdmobUtils.languageNativeAdmobDefault == null && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
-//            NativeAdmobUtils.loadNativeLanguage()
-//        }
-//
-//        NativeAdmobUtils.languageNativeAdmobDefault?.run {
-//            nativeAdLive?.observe(this@LanguageActivity){
-//                checkShowNative(this)
-//            }
-//        }
+
+        NativeAdmobUtils.languageNative1?.run {
+            nativeAdLive?.observe(this@LanguageActivity){
+                if(available()){
+                    showNativeAd(this, viewBinding.flAdplaceholder1.root)
+                }
+            }
+        }
     }
 
-    private fun checkShowNative(nativeAdmob: NativeAdmob) {
-//        if(nativeAdmob.available() && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
-//            viewBinding.flAdplaceholder.visibility = View.VISIBLE
-//            nativeAdmob.showNative(viewBinding.flAdplaceholder, null)
-//        }
+    private fun showNativeAd(nativeAdmob: NativeAdmob, parent : ShimmerFrameLayout) {
+        if(spManager.getBoolean(NameRemoteAdmob.native_language, true)){
+            nativeAdmob.showNative(parent, object : BaseAdmob.OnAdmobShowListener {
+                override fun onShow() {
+                }
+
+                override fun onError(e: String?) {
+                }
+
+            })
+            parent.visible()
+        }else{
+            parent.gone()
+        }
     }
 
     override fun initData() {
         viewModel.loadListLanguage()
     }
 
-    override fun onDestroy() {
-        isTempNativeAd = null
-        super.onDestroy()
-    }
-
     companion object {
-        var isTempNativeAd: NativeAd? = null
-        const val KEY_FROM_SPLASH = "key_splash"
-        fun start(context: Context, fromSplash: Boolean = false) {
-            Intent(context, LanguageActivity::class.java).also {
-                it.putExtra(KEY_FROM_SPLASH, fromSplash)
-                context.startActivity(it)
-            }
+        fun start(activity: Activity, fromSplash : Boolean) {
+            val intent = Intent(activity, LanguageActivity::class.java)
+            intent.putExtra(Constant.KEY_INTENT_FROM_SPLASH, fromSplash)
+            activity.startActivity(intent)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-//        NativeAdmobUtils.languageNativeAdmob2Floor?.reLoad()
     }
 }

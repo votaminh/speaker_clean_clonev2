@@ -63,7 +63,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
                     vpOnBoarding.setCurrentItem(currentPosition + 1, true)
                 } else {
                     if(NetworkUtil.isOnline){
-                        NativeAdmobUtils.loadNativePermission()
+//                        NativeAdmobUtils.loadNativePermission()
                     }
                     PermissionActivity.start(this@OnBoardingActivity)
                     finish()
