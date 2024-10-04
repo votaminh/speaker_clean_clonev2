@@ -95,15 +95,15 @@ class PermissionActivity : BaseActivity<ActivityPermissonClone2Binding>() {
             checkShowNextBtn()
         }
 
-        NativeAdmobUtils.permissionNativeAdmob?.run {
-            nativeAdLive.observe(this@PermissionActivity){
-                if(available() && spManager.getBoolean(NameRemoteAdmob.NATIVE_PERMISSION, true)){
-                    showNative(viewBinding.flAdplaceholder, null)
-                }else{
-                    viewBinding.flAdplaceholder.visibility = View.GONE
-                }
-            }
-        }
+//        NativeAdmobUtils.permissionNativeAdmob?.run {
+//            nativeAdLive.observe(this@PermissionActivity){
+//                if(available() && spManager.getBoolean(NameRemoteAdmob.NATIVE_PERMISSION, true)){
+//                    showNative(viewBinding.flAdplaceholder, null)
+//                }else{
+//                    viewBinding.flAdplaceholder.visibility = View.GONE
+//                }
+//            }
+//        }
     }
 
     private fun checkShowNextBtn() {
@@ -115,7 +115,7 @@ class PermissionActivity : BaseActivity<ActivityPermissonClone2Binding>() {
     }
 
     override fun onResume() {
-        NativeAdmobUtils.permissionNativeAdmob?.reLoad()
+//        NativeAdmobUtils.permissionNativeAdmob?.reLoad()
         super.onResume()
         checkState()
     }

@@ -34,7 +34,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
     lateinit var spManager: SpManager
 
     private var currentActivity: Activity? = null
-    private var openAdmob: OpenAdmob? = null
+//    private var openAdmob: OpenAdmob? = null
 
     override fun onCreate() {
         super<Application>.onCreate()
@@ -53,7 +53,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
         MobileAds.setRequestConfiguration(requestConfiguration)
 
         if(spManager.getBoolean(NameRemoteAdmob.APP_RESUME, true)){
-            openAdmob = OpenAdmob(this, BuildConfig.open_resume)
+//            openAdmob = OpenAdmob(this, BuildConfig.open_resume)
         }
     }
 
@@ -72,9 +72,9 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
     override fun onStart(owner: LifecycleOwner) {
         super.onStart(owner)
         if(spManager.getBoolean(NameRemoteAdmob.APP_RESUME, true)){
-            openAdmob?.run {
-                currentActivity?.let { showAdIfAvailable(it) }
-            }
+//            openAdmob?.run {
+//                currentActivity?.let { showAdIfAvailable(it) }
+//            }
         }
     }
 

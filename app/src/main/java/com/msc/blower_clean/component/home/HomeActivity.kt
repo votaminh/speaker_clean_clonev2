@@ -29,7 +29,7 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
     @Inject
     lateinit var spManager: SpManager
 
-    private var interAdmob : InterAdmob? = null
+//    private var interAdmob : InterAdmob? = null
 
     companion object {
         const val REQUEST_PICKER_CONTACT = 211
@@ -86,38 +86,40 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
     }
 
     private fun showBanner() {
-        if(SpManager.getInstance(this).getBoolean(NameRemoteAdmob.BANNER_COLAPSE, true)){
-            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.BOTTOM)
-            bannerAdmob.showBanner(this@HomeActivity, BuildConfig.banner_collap_home, viewBinding.banner)
-        }else{
-            viewBinding.banner.visibility = View.GONE
-        }
+//        if(SpManager.getInstance(this).getBoolean(NameRemoteAdmob.BANNER_COLAPSE, true)){
+//            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.BOTTOM)
+//            bannerAdmob.showBanner(this@HomeActivity, BuildConfig.banner_collap_home, viewBinding.banner)
+//        }else{
+//            viewBinding.banner.visibility = View.GONE
+//        }
     }
 
     private fun loadInter() {
-        if(SpManager.getInstance(this@HomeActivity).getBoolean(NameRemoteAdmob.INTER_HOME, true)){
-            interAdmob = InterAdmob(this, BuildConfig.inter_home)
-            interAdmob?.load(null)
-        }
+//        if(SpManager.getInstance(this@HomeActivity).getBoolean(NameRemoteAdmob.INTER_HOME, true)){
+//            interAdmob = InterAdmob(this, BuildConfig.inter_home)
+//            interAdmob?.load(null)
+//        }
     }
 
     fun showInter(nextAction : (() -> Unit)? = null){
-        if(SpManager.getInstance(this@HomeActivity).getBoolean(NameRemoteAdmob.INTER_HOME, true)){
-            interAdmob?.showInterstitial(this@HomeActivity, object : BaseAdmob.OnAdmobShowListener{
-                override fun onShow() {
-                    nextAction?.invoke()
-                    interAdmob?.load(null)
-                }
+//        if(SpManager.getInstance(this@HomeActivity).getBoolean(NameRemoteAdmob.INTER_HOME, true)){
+//            interAdmob?.showInterstitial(this@HomeActivity, object : BaseAdmob.OnAdmobShowListener{
+//                override fun onShow() {
+//                    nextAction?.invoke()
+//                    interAdmob?.load(null)
+//                }
+//
+//                override fun onError(e: String?) {
+//                    nextAction?.invoke()
+//                    interAdmob?.load(null)
+//                }
+//
+//            })
+//        }else{
+//            nextAction?.invoke()
+//        }
 
-                override fun onError(e: String?) {
-                    nextAction?.invoke()
-                    interAdmob?.load(null)
-                }
-
-            })
-        }else{
-            nextAction?.invoke()
-        }
+        nextAction?.invoke()
     }
 
     override fun onBack() {

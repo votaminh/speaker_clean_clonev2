@@ -86,31 +86,31 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
     }
 
     private fun showNativeS2() {
-        NativeAdmobUtils.languageNativeAdmob2Floor?.let { s2Native ->
-            if(s2Native.available()){
-                s2Native.nativeAdLive.observe(this@LanguageActivity){
-                    checkShowNative(s2Native)
-                }
-            }
-        }
+//        NativeAdmobUtils.languageNativeAdmob2Floor?.let { s2Native ->
+//            if(s2Native.available()){
+//                s2Native.nativeAdLive.observe(this@LanguageActivity){
+//                    checkShowNative(s2Native)
+//                }
+//            }
+//        }
     }
 
     override fun initObserver() {
         viewModel.listLanguage.observe(this) {
             languageAdapter.setData(ArrayList(it))
         }
-
-        viewBinding.flAdplaceholder.visibility = View.GONE
-
-        if(NativeAdmobUtils.languageNativeAdmobDefault == null && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
-            NativeAdmobUtils.loadNativeLanguage()
-        }
-
-        NativeAdmobUtils.languageNativeAdmobDefault?.run {
-            nativeAdLive?.observe(this@LanguageActivity){
-                checkShowNative(this)
-            }
-        }
+//
+//        viewBinding.flAdplaceholder.visibility = View.GONE
+//
+//        if(NativeAdmobUtils.languageNativeAdmobDefault == null && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
+//            NativeAdmobUtils.loadNativeLanguage()
+//        }
+//
+//        NativeAdmobUtils.languageNativeAdmobDefault?.run {
+//            nativeAdLive?.observe(this@LanguageActivity){
+//                checkShowNative(this)
+//            }
+//        }
     }
 
     private fun checkShowNative(nativeAdmob: NativeAdmob) {
@@ -142,6 +142,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
 
     override fun onResume() {
         super.onResume()
-        NativeAdmobUtils.languageNativeAdmob2Floor?.reLoad()
+//        NativeAdmobUtils.languageNativeAdmob2Floor?.reLoad()
     }
 }

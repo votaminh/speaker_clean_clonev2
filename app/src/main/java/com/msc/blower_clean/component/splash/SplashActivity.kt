@@ -73,43 +73,45 @@ class SplashActivity : BaseActivity<ActivitySplashClone2Binding>() {
 
         showBanner()
 
-        if (spManager.getBoolean(NameRemoteAdmob.INTER_SPLASH, true)) {
-            val interAdmob = InterAdmob(this@SplashActivity, BuildConfig.inter_splash)
-            interAdmob.load(object : BaseAdmob.OnAdmobLoadListener {
-                override fun onLoad() {
-                    if (spManager.getBoolean(NameRemoteAdmob.INTER_SPLASH, true)) {
-                        interAdmob.showInterstitial(
-                            this@SplashActivity,
-                            object : BaseAdmob.OnAdmobShowListener {
-                                override fun onShow() {
-                                    gotoMainScreen()
-                                }
+//        if (spManager.getBoolean(NameRemoteAdmob.INTER_SPLASH, true)) {
+//            val interAdmob = InterAdmob(this@SplashActivity, BuildConfig.inter_splash)
+//            interAdmob.load(object : BaseAdmob.OnAdmobLoadListener {
+//                override fun onLoad() {
+//                    if (spManager.getBoolean(NameRemoteAdmob.INTER_SPLASH, true)) {
+//                        interAdmob.showInterstitial(
+//                            this@SplashActivity,
+//                            object : BaseAdmob.OnAdmobShowListener {
+//                                override fun onShow() {
+//                                    gotoMainScreen()
+//                                }
+//
+//                                override fun onError(e: String?) {
+//                                    gotoMainScreen()
+//                                }
+//                            })
+//                    } else {
+//                        gotoMainScreen()
+//                    }
+//                }
+//
+//                override fun onError(e: String?) {
+//                    gotoMainScreen()
+//                }
+//            })
+//        } else {
+//            gotoMainScreen()
+//        }
 
-                                override fun onError(e: String?) {
-                                    gotoMainScreen()
-                                }
-                            })
-                    } else {
-                        gotoMainScreen()
-                    }
-                }
-
-                override fun onError(e: String?) {
-                    gotoMainScreen()
-                }
-            })
-        } else {
-            gotoMainScreen()
-        }
+        gotoMainScreen()
     }
 
     private fun showBanner() {
-        if(spManager.getBoolean(NameRemoteAdmob.BANNER_SPLASH, true)){
-            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
-            bannerAdmob.showBanner(this@SplashActivity, BuildConfig.banner_splash, viewBinding.banner)
-        }else{
-            viewBinding.banner.visibility = View.GONE
-        }
+//        if(spManager.getBoolean(NameRemoteAdmob.BANNER_SPLASH, true)){
+//            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
+//            bannerAdmob.showBanner(this@SplashActivity, BuildConfig.banner_splash, viewBinding.banner)
+//        }else{
+//            viewBinding.banner.visibility = View.GONE
+//        }
     }
 
     private fun gotoMainScreen() {
