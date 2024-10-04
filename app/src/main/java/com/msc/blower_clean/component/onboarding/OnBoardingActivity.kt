@@ -60,7 +60,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
         }
 
         if(SpManager.getInstance(this).getBoolean(NameRemoteAdmob.native_onboarding, true)){
-//            NativeAdmobUtils.loadNativePermission()
+            NativeAdmobUtils.loadNativePermission()
         }
     }
 

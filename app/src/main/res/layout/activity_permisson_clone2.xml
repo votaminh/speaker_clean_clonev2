@@ -119,7 +119,7 @@
 
         <include
             android:id="@+id/native_ad_view"
-            layout="@layout/ad_unified" />
+            layout="@layout/ad_unified2" />
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 

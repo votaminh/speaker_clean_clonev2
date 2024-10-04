@@ -11,16 +11,22 @@ class NativeAdmobUtils {
     companion object {
         @SuppressLint("StaticFieldLeak")
         var languageNative1: NativeAdmob? = null
+
         @SuppressLint("StaticFieldLeak")
         var languageNative2: NativeAdmob? = null
 
         @SuppressLint("StaticFieldLeak")
         var onboardNativeAdmob1: NativeAdmob? = null
+
         @SuppressLint("StaticFieldLeak")
         var onboardNativeAdmob2: NativeAdmob? = null
 
+
+        @SuppressLint("StaticFieldLeak")
+        var permissionNative : NativeAdmob? = null
+
         fun loadNativeLanguage() {
-            if(NetworkUtil.isOnline){
+            if (NetworkUtil.isOnline) {
                 App.instance?.applicationContext?.let { context ->
                     SpManager.getInstance(context).putBoolean("first_native_language", false)
 
@@ -50,12 +56,12 @@ class NativeAdmobUtils {
 
                     })
                 }
-                }
             }
+        }
 
 
         fun loadNativeOnboard() {
-            App.instance?.applicationContext?.let {context ->
+            App.instance?.applicationContext?.let { context ->
                 SpManager.getInstance(context).putBoolean("first_native_onboarding", false)
                 onboardNativeAdmob1 = NativeAdmob(
                     context,
@@ -86,10 +92,29 @@ class NativeAdmobUtils {
             }
         }
 
+        fun loadNativePermission() {
+            if (NetworkUtil.isOnline) {
+                App.instance?.applicationContext?.let { context ->
+                    permissionNative = NativeAdmob(
+                        context,
+                        BuildConfig.native_freature
+                    )
+                    permissionNative?.load(object : BaseAdmob.OnAdmobLoadListener {
+                        override fun onLoad() {
+                        }
+
+                        override fun onError(e: String?) {
+                        }
+
+                    })
+                }
+            }
         }
 
+    }
 
-        fun loadNativeExit(){
+
+    fun loadNativeExit() {
 //            App.instance?.applicationContext?.let {context ->
 ////                nativeExitLiveData = NativeAdmob(
 ////                    context,
@@ -97,5 +122,5 @@ class NativeAdmobUtils {
 ////                )
 ////                nativeExitLiveData?.load(null)
 //            }
-        }
+    }
 }
