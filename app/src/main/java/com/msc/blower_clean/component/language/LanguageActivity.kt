@@ -79,9 +79,9 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
         }
 
         if (spManager.getShowOnBoarding() && NetworkUtil.isOnline) {
-            if (spManager.getBoolean(NameRemoteAdmob.NATIVE_ONBOARD, true)) {
-                NativeAdmobUtils.loadNativeOnboard()
-            }
+//            if (spManager.getBoolean(NameRemoteAdmob.NATIVE_ONBOARD, true)) {
+//                NativeAdmobUtils.loadNativeOnboard()
+//            }
         }
     }
 
@@ -114,10 +114,10 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
     }
 
     private fun checkShowNative(nativeAdmob: NativeAdmob) {
-        if(nativeAdmob.available() && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
-            viewBinding.flAdplaceholder.visibility = View.VISIBLE
-            nativeAdmob.showNative(viewBinding.flAdplaceholder, null)
-        }
+//        if(nativeAdmob.available() && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
+//            viewBinding.flAdplaceholder.visibility = View.VISIBLE
+//            nativeAdmob.showNative(viewBinding.flAdplaceholder, null)
+//        }
     }
 
     override fun initData() {

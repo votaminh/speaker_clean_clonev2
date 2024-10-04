@@ -186,17 +186,17 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
     }
 
     private fun addAdsToOnboard(it: NativeAdmob?) {
-        if(spManager.getBoolean(NameRemoteAdmob.NATIVE_FULL_SCREEN, true)){
-            val adsOnboard = OnBoarding(
-                OnBoarding.FULL_NATIVE_FLAG,
-                OnBoarding.FULL_NATIVE_FLAG,
-                OnBoarding.FULL_NATIVE_FLAG,
-                it
-            )
-
-            onBoardingAdapter.getListData().add(2, adsOnboard)
-            onBoardingAdapter.notifyDataSetChanged()
-        }
+//        if(spManager.getBoolean(NameRemoteAdmob.NATIVE_FULL_SCREEN, true)){
+//            val adsOnboard = OnBoarding(
+//                OnBoarding.FULL_NATIVE_FLAG,
+//                OnBoarding.FULL_NATIVE_FLAG,
+//                OnBoarding.FULL_NATIVE_FLAG,
+//                it
+//            )
+//
+//            onBoardingAdapter.getListData().add(2, adsOnboard)
+//            onBoardingAdapter.notifyDataSetChanged()
+//        }
     }
 
     override fun onResume() {

@@ -66,15 +66,8 @@ class RemoteConfig {
             val adsConfig = remoteConfig.getString("admob_config")
             if(!adsConfig.isNullOrEmpty()){
                 val adsJson = JSONObject(adsConfig)
-                putBooleanToSP(adsJson, NameRemoteAdmob.INTER_SPLASH)
-                putBooleanToSP(adsJson, NameRemoteAdmob.NATIVE_LANGUAGE)
-                putBooleanToSP(adsJson, NameRemoteAdmob.NATIVE_FULL_SCREEN)
-                putBooleanToSP(adsJson, NameRemoteAdmob.NATIVE_ONBOARD)
-                putBooleanToSP(adsJson, NameRemoteAdmob.APP_RESUME)
-                putBooleanToSP(adsJson, NameRemoteAdmob.BANNER_COLAPSE)
-                putBooleanToSP(adsJson, NameRemoteAdmob.INTER_HOME)
-                putBooleanToSP(adsJson, NameRemoteAdmob.NATIVE_PERMISSION)
-                putBooleanToSP(adsJson, NameRemoteAdmob.BANNER_SPLASH)
+                putBooleanToSP(adsJson, NameRemoteAdmob.inter_splash)
+                putBooleanToSP(adsJson, NameRemoteAdmob.native_language)
             }
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.INTER_CATEGORY)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.NATIVE_EXIT)
