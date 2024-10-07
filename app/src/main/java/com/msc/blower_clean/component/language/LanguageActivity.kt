@@ -46,6 +46,17 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
             languageAdapter.selectLanguage(languageModel.languageCode)
             showNative2()
         }
+
+        if(isFromSplash){
+            viewBinding.imvBack.gone()
+        }else{
+            viewBinding.imvBack.visible()
+        }
+
+        viewBinding.imvBack.setOnClickListener {
+            finish()
+        }
+
         viewBinding.ivDone.setOnClickListener {
             if (selectLanguageModel == null) {
                 selectLanguageModel = languageAdapter.dataSet.find { it.selected }
