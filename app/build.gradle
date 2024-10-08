@@ -50,7 +50,7 @@ android {
             buildConfigField "String", "native_language_2floor", "\"ca-app-pub-7121787699260095/8844322096\""
             buildConfigField "String", "native_onboarding", "\"ca-app-pub-7121787699260095/1101563446\""
             buildConfigField "String", "native_onboarding2", "\"ca-app-pub-7121787699260095/2491923319\""
-            buildConfigField "String", "native_onboardin3", "\"ca-app-pub-7121787699260095/9697230578\""
+            buildConfigField "String", "native_onboarding3", "\"ca-app-pub-7121787699260095/9697230578\""
             buildConfigField "String", "native_exit", "\"\""
             buildConfigField "String", "native_permission", "\"ca-app-pub-7121787699260095/4190761212\""
             buildConfigField "String", "native_full_screen", "\"ca-app-pub-7121787699260095/6808820739\""
