@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Blower Cleaner</string>
+    <string name="facebook_app_id" translatable="false">1060543111858909</string>
+    <string name="facebook_client_token" translatable="false">a8d2209573bdfb389b9949c4fa0ed992</string>
 
     <string name="english">English</string>
     <string name="vietnamese">Vietnamese</string>
