@@ -8,9 +8,12 @@ import android.os.Bundle
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.applovin.sdk.AppLovinPrivacySettings
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.FirebaseApp
+import com.mbridge.msdk.MBridgeConstans
+import com.mbridge.msdk.out.MBridgeSDKFactory
 import com.msc.blower_clean.admob.NameRemoteAdmob
 import com.msc.blower_clean.admob.OpenAdmob
 import com.msc.blower_clean.utils.AppEx.getDeviceLanguage
@@ -18,6 +21,7 @@ import com.msc.blower_clean.utils.LocaleHelper
 import com.msc.blower_clean.utils.NetworkUtil
 import com.msc.blower_clean.utils.RemoteConfig
 import com.msc.blower_clean.utils.SpManager
+import com.vungle.ads.VunglePrivacySettings
 import dagger.hilt.android.HiltAndroidApp
 import java.util.Locale
 import javax.inject.Inject
@@ -55,6 +59,55 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
         if(spManager.getBoolean(NameRemoteAdmob.APP_RESUME, true)){
             openAdmob = OpenAdmob(this, BuildConfig.open_resume)
         }
+    }
+
+    private fun initMediation() {
+        initPangle()
+        initVungle()
+        initApplovin()
+        initFAN()
+        initMintegral()
+        initInMobi()
+        initIronSource()
+    }
+
+    private fun initFAN() {
+        // no request code
+    }
+
+    private fun initVungle() {
+        VunglePrivacySettings.setGDPRStatus(true, "v1.0.0");
+    }
+
+    private fun initPangle() {
+        // no request code
+    }
+
+    private fun initApplovin(){
+        AppLovinPrivacySettings.setDoNotSell(true, this);
+        VunglePrivacySettings.setCCPAStatus(true);
+    }
+
+    private fun initInMobi(){
+//        val consentObject = JSONObject()
+//        try {
+//            consentObject.put(InMobiSdk.IM_GDPR_CONSENT_AVAILABLE, true)
+//            consentObject.put("gdpr", "1")
+//        } catch (exception: JSONException) {
+//            exception.printStackTrace()
+//        }
+//
+//        InMobiConsent.updateGDPRConsent(consentObject)
+    }
+
+    private fun initMintegral(){
+        val sdk = MBridgeSDKFactory.getMBridgeSDK()
+        sdk.setConsentStatus(this, MBridgeConstans.IS_SWITCH_ON)
+    }
+
+    private fun initIronSource(){
+//        IronSource.setConsent(true);
+//        IronSource.setMetaData("do_not_sell", "true")
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
