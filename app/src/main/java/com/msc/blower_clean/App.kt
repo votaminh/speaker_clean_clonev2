@@ -59,6 +59,8 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
         if(spManager.getBoolean(NameRemoteAdmob.open_resume, true)){
             openAdmob = OpenAdmob(this, BuildConfig.open_resume)
         }
+
+        initMediation()
     }
 
     private fun initMediation() {
