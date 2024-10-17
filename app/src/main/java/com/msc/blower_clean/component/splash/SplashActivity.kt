@@ -108,10 +108,10 @@ class SplashActivity : BaseActivity<ActivitySplashClone2Binding>() {
     }
 
     private fun loadShowOpenAds(successAction : (() -> Unit)? = null, failAction : (() -> Unit)? = null) {
-        val openAdmob = OpenAdmob(this, BuildConfig.open_splash_high)
-        openAdmob.loadAd(this@SplashActivity, object : BaseAdmob.OnAdmobLoadListener {
+        val interAdmob = InterAdmob(this@SplashActivity, BuildConfig.inter_splash_high)
+        interAdmob.load(object : BaseAdmob.OnAdmobLoadListener {
             override fun onLoad() {
-                openAdmob.showAdIfAvailable(this@SplashActivity, object : BaseAdmob.OnAdmobShowListener {
+                interAdmob.showInterstitial(this@SplashActivity,object : OnAdmobShowListener{
                     override fun onShow() {
                         successAction?.invoke()
                     }
@@ -119,6 +119,7 @@ class SplashActivity : BaseActivity<ActivitySplashClone2Binding>() {
                     override fun onError(e: String?) {
                         failAction?.invoke()
                     }
+
                 })
             }
 

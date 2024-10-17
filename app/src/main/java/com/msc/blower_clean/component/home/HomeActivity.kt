@@ -48,8 +48,6 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
     override fun initViews() {
         super.initViews()
 
-        spManager.saveOnBoarding()
-
         viewBinding.run {
             setting.setOnClickListener {
                 showInterAction{
