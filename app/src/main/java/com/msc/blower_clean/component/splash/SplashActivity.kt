@@ -4,8 +4,10 @@ import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
 import com.msc.blower_clean.BuildConfig
+import com.msc.blower_clean.admob.BannerAdmob
 import com.msc.blower_clean.admob.BaseAdmob
 import com.msc.blower_clean.admob.BaseAdmob.OnAdmobShowListener
+import com.msc.blower_clean.admob.CollapsiblePositionType
 import com.msc.blower_clean.admob.InterAdmob
 import com.msc.blower_clean.admob.NameRemoteAdmob
 import com.msc.blower_clean.admob.OpenAdmob
@@ -16,6 +18,7 @@ import com.msc.blower_clean.databinding.ActivitySplashClone2Binding
 import com.msc.blower_clean.utils.NativeAdmobUtils
 import com.msc.blower_clean.utils.NetworkUtil
 import com.msc.blower_clean.utils.SpManager
+import com.msc.m_utils.external.Ex.gone
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -130,12 +133,12 @@ class SplashActivity : BaseActivity<ActivitySplashClone2Binding>() {
     }
 
     private fun showBanner() {
-//        if(spManager.getBoolean(NameRemoteAdmob.BANNER_SPLASH, true)){
-//            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
-//            bannerAdmob.showBanner(this@SplashActivity, BuildConfig.banner_splash, viewBinding.banner)
-//        }else{
-//            viewBinding.banner.visibility = View.GONE
-//        }
+        if(spManager.getBoolean(NameRemoteAdmob.banner_splash, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
+            bannerAdmob.showBanner(this@SplashActivity, BuildConfig.banner_splash, viewBinding.banner)
+        }else{
+            viewBinding.banner.gone()
+        }
     }
 
     private fun gotoMainScreen() {

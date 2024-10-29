@@ -129,6 +129,18 @@
         </LinearLayout>
     </ScrollView>
 
+    <TextView
+        android:id="@+id/tvNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingHorizontal="@dimen/size30"
+        android:paddingTop="@dimen/size5"
+        android:paddingBottom="@dimen/size6"
+        android:text="@string/txt_next"
+        android:textColor="@color/app_main"
+        android:textSize="@dimen/size16" />
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/fl_adplaceholder"
         android:layout_width="match_parent"
@@ -140,16 +152,4 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <TextView
-        android:id="@+id/tvNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginVertical="@dimen/size20"
-        android:paddingHorizontal="@dimen/size30"
-        android:paddingTop="@dimen/size5"
-        android:paddingBottom="@dimen/size6"
-        android:text="@string/txt_next"
-        android:textColor="@color/app_main"
-        android:textSize="@dimen/size16" />
 </LinearLayout>
