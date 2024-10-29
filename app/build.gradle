@@ -48,8 +48,8 @@ android {
             buildConfigField "String", "native_language_1_1", "\"ca-app-pub-7121787699260095/8808298116\""
             buildConfigField "String", "native_language_1_2", "\"ca-app-pub-7121787699260095/8844322096\""
 
-            buildConfigField "String", "native_onboarding_1_1", "\"ca-app-pub-7121787699260095/3848951603\""
-            buildConfigField "String", "native_onboarding_1_2", "\"ca-app-pub-7121787699260095/5594844787\""
+            buildConfigField "String", "native_onboarding_1_1", "\"ca-app-pub-7121787699260095/1101563446\""
+            buildConfigField "String", "native_onboarding_1_2", "\"ca-app-pub-7121787699260095/2491923319\""
 
             buildConfigField "String", "native_freature", "\"ca-app-pub-7121787699260095/4190761212\""
 
