@@ -31,8 +31,7 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
     lateinit var spManager: SpManager
 
     private var interAdmob : InterAdmob? = null
-    private var latestInterShow: Long = 0
-    private var firstRequest = true
+    private var countClick = 0;
 
     companion object {
         const val REQUEST_PICKER_CONTACT = 211
@@ -82,6 +81,8 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
             }
         })
 
+        spManager.saveOnBoarding()
+
         loadInter()
         showBanner()
         InterNativeUtils.loadInterBack()
@@ -109,21 +110,13 @@ class HomeActivity : BaseActivity<ActivityMainClone2Binding>() {
         }
     }
 
-    fun showInterAction(nextAction : (() -> Unit)? = null){
-        if(firstRequest){
-            firstRequest = false
+    private fun showInterAction(nextAction : (() -> Unit)? = null){
+        countClick ++
+
+        if(countClick % 2 != 0){
             nextAction?.invoke()
             return
         }
-
-        if(latestInterShow == 0L){
-            latestInterShow = System.currentTimeMillis()
-        }else if(System.currentTimeMillis() - latestInterShow < 30000){
-            nextAction?.invoke()
-            return
-        }
-
-        latestInterShow = System.currentTimeMillis()
 
         if(interAdmob == null || !spManager.getBoolean(NameRemoteAdmob.inter_home, true)){
             nextAction?.invoke()

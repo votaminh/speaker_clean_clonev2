@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.viewbinding.ViewBinding
+import com.msc.blower_clean.BuildConfig
 import com.msc.blower_clean.R
 import com.msc.blower_clean.utils.SpManager
+import com.msc.m_utils.external.AppCompatActivity
 import java.util.Locale
 
 
@@ -38,6 +39,7 @@ abstract class BaseActivity<V : ViewBinding> : AppCompatActivity() {
         hideSystemUI()
         viewBinding = provideViewBinding()
         setContentView(viewBinding.root)
+        DEBUG = BuildConfig.DEBUG
         initViews()
         initData()
         initObserver()
