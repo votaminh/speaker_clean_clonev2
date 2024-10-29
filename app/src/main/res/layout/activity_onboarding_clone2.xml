@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main_app">
+    android:background="@color/white">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpOnBoarding"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/size4"
             android:text="@string/txt_next"
-            android:textColor="@color/white"
+            android:textColor="@color/app_main"
             android:textSize="@dimen/size14"
             android:textStyle="bold" />
 
@@ -37,13 +37,13 @@
             android:id="@+id/dot_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:dotsColor="#6E6E6E"
+            app:dotsColor="#E6E6E6"
             app:dotsCornerRadius="@dimen/size4"
             app:dotsSize="@dimen/size10"
             app:dotsSpacing="@dimen/size4"
             app:dotsWidthFactor="2.5"
             app:progressMode="false"
-            app:selectedDotColor="@color/white"
+            app:selectedDotColor="@color/app_main"
             android:layout_marginBottom="@dimen/size10"
             />
 

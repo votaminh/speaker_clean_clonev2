@@ -2,12 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_bg"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/layout_toolbar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size56"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TextView_Headline1"
+            android:text="@string/txt_categories"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/app_main"
+            android:layout_marginLeft="@dimen/size20"
+            />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,13 +45,15 @@
             <TextView
                 style="@style/TextView_Headline2"
                 android:layout_marginHorizontal="@dimen/size20"
-                android:text="@string/txt_choise_feature" />
+                android:text="@string/txt_choise_feature"
+                android:textColor="@color/app_main"
+                />
 
             <TextView
                 style="@style/TextView_Body2"
                 android:layout_marginHorizontal="@dimen/size20"
                 android:text="@string/txt_feature_request_message"
-                android:textColor="@color/gray" />
+                android:textColor="@color/app_main" />
 
             <LinearLayout
                 android:id="@+id/llWriteSetting"
@@ -52,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/txt_auto_cleaner"
-                    android:textColor="@color/white"
+                    android:textColor="@color/app_main"
                     />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -76,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/txt_manual_cleaner"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/app_main" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/sw2"
@@ -99,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/txt_vibrate_cleaner"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/app_main"/>
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/sw3"
@@ -133,6 +150,6 @@
         android:paddingTop="@dimen/size5"
         android:paddingBottom="@dimen/size6"
         android:text="@string/txt_next"
-        android:textColor="@color/white"
+        android:textColor="@color/app_main"
         android:textSize="@dimen/size16" />
 </LinearLayout>

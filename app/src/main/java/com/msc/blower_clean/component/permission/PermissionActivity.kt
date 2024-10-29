@@ -3,6 +3,7 @@ package com.msc.blower_clean.component.permission
 import android.app.Activity
 import android.content.Intent
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.msc.blower_clean.R
 import com.msc.blower_clean.admob.NameRemoteAdmob
@@ -41,9 +42,9 @@ class PermissionActivity : BaseActivity<ActivityPermissonClone2Binding>() {
         super.initViews()
 
         viewBinding.run {
+            tvTitle.setText(R.string.txt_choise_feature)
 
-            toolbar.imvBack.invisible()
-            toolbar.tvTitle.setText(R.string.txt_choise_feature)
+            setStatusBarColor(ContextCompat.getColor(this@PermissionActivity, R.color.white), true)
 
             llWriteSetting.setOnClickListener {
 //                PermissionUtils.requestWriteSetting(this@PermissionActivity, 342)

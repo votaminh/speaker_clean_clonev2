@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Looper
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.msc.blower_clean.R
 import com.msc.blower_clean.admob.BaseAdmob
 import com.msc.blower_clean.admob.NameRemoteAdmob
 import com.msc.blower_clean.base.activity.BaseActivity
@@ -37,6 +39,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
         viewBinding.apply {
             vpOnBoarding.adapter = onBoardingAdapter
 
+            setStatusBarColor(ContextCompat.getColor(this@OnBoardingActivity, R.color.white), true)
             vpOnBoarding.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
