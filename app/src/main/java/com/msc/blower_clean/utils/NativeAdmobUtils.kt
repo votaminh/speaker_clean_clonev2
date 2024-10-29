@@ -21,6 +21,8 @@ class NativeAdmobUtils {
         @SuppressLint("StaticFieldLeak")
         var onboardNativeAdmob2: NativeAdmob? = null
 
+        @SuppressLint("StaticFieldLeak")
+        var onboardFullNativeAdmob : NativeAdmob? = null
 
         @SuppressLint("StaticFieldLeak")
         var permissionNative : NativeAdmob? = null
@@ -89,6 +91,12 @@ class NativeAdmobUtils {
                     }
 
                 })
+
+                onboardFullNativeAdmob = NativeAdmob(
+                    context,
+                    BuildConfig.native_onboarding_full
+                )
+                onboardFullNativeAdmob?.load(null)
             }
         }
 

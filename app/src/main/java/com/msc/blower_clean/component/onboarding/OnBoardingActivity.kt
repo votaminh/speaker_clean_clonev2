@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.msc.blower_clean.R
 import com.msc.blower_clean.admob.BaseAdmob
 import com.msc.blower_clean.admob.NameRemoteAdmob
+import com.msc.blower_clean.admob.NativeAdmob
 import com.msc.blower_clean.base.activity.BaseActivity
 import com.msc.blower_clean.component.permission.PermissionActivity
 import com.msc.blower_clean.databinding.ActivityOnboardingClone2Binding
@@ -67,53 +68,119 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
         }
     }
 
+    override fun initObserver() {
+        super.initObserver()
+
+        NativeAdmobUtils.onboardFullNativeAdmob?.run {
+            nativeAdLive.observe(this@OnBoardingActivity){
+                if(available()){
+                    addAdsToOnboard(this)
+                }
+            }
+        }
+    }
+
+    private fun addAdsToOnboard(it: NativeAdmob) {
+        val adsOnboard = OnBoarding(
+            OnBoarding.FULL_NATIVE_FLAG,
+            OnBoarding.FULL_NATIVE_FLAG,
+            OnBoarding.FULL_NATIVE_FLAG,
+            it
+        )
+
+        onBoardingAdapter.getListData().add(2, adsOnboard)
+        onBoardingAdapter.notifyDataSetChanged()
+    }
+
     private fun showNative(currentPosition: Int) {
 
-        if(!SpManager.getInstance(this).getBoolean(NameRemoteAdmob.native_onboarding, true)){
-            viewBinding.flAdplaceholder.gone()
-            return
-        }
+        viewBinding.flAdplaceholder.gone()
+        viewBinding.navigationLayout.visible()
 
-        if(currentPosition == 1){
-            viewBinding.flAdplaceholder.gone()
-        }else{
-            viewBinding.flAdplaceholder.visible()
-        }
+        if(onBoardingAdapter.itemCount == 3){
+            when(currentPosition){
+                0 -> {
+                    viewBinding.flAdplaceholder.visible()
+                    NativeAdmobUtils.onboardNativeAdmob1?.run {
+                        nativeAdLive?.observe(this@OnBoardingActivity){
+                            if(available()){
+                                android.os.Handler(Looper.getMainLooper()).postDelayed({
+                                    showNative(viewBinding.flAdplaceholder, object : BaseAdmob.OnAdmobShowListener {
+                                        override fun onShow() {
+                                        }
 
-        when(currentPosition){
-            0 -> {
-                NativeAdmobUtils.onboardNativeAdmob1?.run {
-                    nativeAdLive?.observe(this@OnBoardingActivity){
-                        if(available()){
-                            android.os.Handler(Looper.getMainLooper()).postDelayed({
-                                showNative(viewBinding.flAdplaceholder, object : BaseAdmob.OnAdmobShowListener {
-                                    override fun onShow() {
-                                    }
+                                        override fun onError(e: String?) {
+                                        }
 
-                                    override fun onError(e: String?) {
-                                    }
+                                    })
+                                }, 100)
+                            }
+                        }
+                    }
+                }
 
-                                })
-                            }, 100)
+                2 -> {
+                    viewBinding.flAdplaceholder.visible()
+                    NativeAdmobUtils.onboardNativeAdmob2?.run {
+                        nativeAdLive?.observe(this@OnBoardingActivity){
+                            if(available()){
+                                android.os.Handler(Looper.getMainLooper()).postDelayed({
+                                    showNative(viewBinding.flAdplaceholder, object : BaseAdmob.OnAdmobShowListener {
+                                        override fun onShow() {
+                                        }
+
+                                        override fun onError(e: String?) {
+                                        }
+
+                                    })
+                                }, 100)
+                            }
                         }
                     }
                 }
             }
+        }else {
+            when(currentPosition){
+                0 -> {
+                    viewBinding.flAdplaceholder.visible()
+                    NativeAdmobUtils.onboardNativeAdmob1?.run {
+                        nativeAdLive?.observe(this@OnBoardingActivity){
+                            if(available()){
+                                android.os.Handler(Looper.getMainLooper()).postDelayed({
+                                    showNative(viewBinding.flAdplaceholder, object : BaseAdmob.OnAdmobShowListener {
+                                        override fun onShow() {
+                                        }
 
-            2 -> {
-                NativeAdmobUtils.onboardNativeAdmob2?.run {
-                    nativeAdLive?.observe(this@OnBoardingActivity){
-                        if(available()){
-                            android.os.Handler(Looper.getMainLooper()).postDelayed({
-                                showNative(viewBinding.flAdplaceholder, object : BaseAdmob.OnAdmobShowListener {
-                                    override fun onShow() {
-                                    }
+                                        override fun onError(e: String?) {
+                                        }
 
-                                    override fun onError(e: String?) {
-                                    }
+                                    })
+                                }, 100)
+                            }
+                        }
+                    }
+                }
 
-                                })
-                            }, 100)
+                2 -> {
+                    viewBinding.navigationLayout.gone()
+                }
+
+                3 -> {
+                    viewBinding.flAdplaceholder.visible()
+                    NativeAdmobUtils.onboardNativeAdmob2?.run {
+                        nativeAdLive?.observe(this@OnBoardingActivity){
+                            if(available()){
+                                android.os.Handler(Looper.getMainLooper()).postDelayed({
+                                    showNative(viewBinding.flAdplaceholder, object : BaseAdmob.OnAdmobShowListener {
+                                        override fun onShow() {
+                                        }
+
+                                        override fun onError(e: String?) {
+                                        }
+
+                                    })
+                                }, 100)
+                            }
                         }
                     }
                 }
