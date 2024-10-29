@@ -15,6 +15,7 @@ import com.msc.blower_clean.component.auto.auto.rv2
 import com.msc.blower_clean.databinding.ActivityBlowerClone2Binding
 import com.msc.blower_clean.utils.AppEx.range
 import com.msc.blower_clean.utils.InterNativeUtils
+import com.msc.blower_clean.utils.RewardUtils
 
 class BlowerActivity : BaseActivity<ActivityBlowerClone2Binding>() {
 
@@ -48,26 +49,12 @@ class BlowerActivity : BaseActivity<ActivityBlowerClone2Binding>() {
                 }
 
                 if(isRunning){
-                    currentLevelPercent = 0.05f
-                    booster.animate().alpha(0.3f).start()
-                    lower.animate().alpha(0.3f).start()
+                    process()
                 }else{
-                    currentLevelPercent = 0.5f
-                    startAudio()
-                    setPercentAudio(currentLevelPercent * 100)
-                }
-                isRunning = !isRunning
-                animationIndicatorTo(currentLevelPercent, true)
-
-                imvTurn.animate().alpha(0.3f).start()
-                android.os.Handler(Looper.getMainLooper()).postDelayed({
-                    imvTurn.animate().alpha(1f).start()
-                    if(isRunning){
-                        booster.animate().alpha(1f).start()
-                        lower.animate().alpha(1f).start()
+                    RewardUtils.showRewardFeature(this@BlowerActivity){
+                        process()
                     }
-                }, 3000)
-
+                }
             }
 
             booster.setOnClickListener {
@@ -102,6 +89,31 @@ class BlowerActivity : BaseActivity<ActivityBlowerClone2Binding>() {
                     finish()
                 }
             }
+        }
+    }
+
+    private fun process() {
+        viewBinding.run {
+            if(isRunning){
+                currentLevelPercent = 0.05f
+                booster.animate().alpha(0.3f).start()
+                lower.animate().alpha(0.3f).start()
+            }else{
+                currentLevelPercent = 0.5f
+                startAudio()
+                setPercentAudio(currentLevelPercent * 100)
+            }
+            isRunning = !isRunning
+            animationIndicatorTo(currentLevelPercent, true)
+
+            imvTurn.animate().alpha(0.3f).start()
+            android.os.Handler(Looper.getMainLooper()).postDelayed({
+                imvTurn.animate().alpha(1f).start()
+                if(isRunning){
+                    booster.animate().alpha(1f).start()
+                    lower.animate().alpha(1f).start()
+                }
+            }, 3000)
         }
     }
 

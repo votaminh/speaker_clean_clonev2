@@ -15,6 +15,7 @@ import com.msc.blower_clean.component.test_speaker.TestSpeakerActivity
 import com.msc.blower_clean.databinding.ActivityManualCleanerClone2Binding
 import com.msc.blower_clean.utils.AppEx.range
 import com.msc.blower_clean.utils.InterNativeUtils
+import com.msc.blower_clean.utils.RewardUtils
 import com.msc.blower_clean.utils.ViewEx.gone
 import com.msc.blower_clean.utils.ViewEx.invisible
 import com.msc.blower_clean.utils.ViewEx.visible
@@ -34,6 +35,7 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
     val stateAudio = MutableLiveData<StateAudio>()
     val frequencyAudioLive = MutableLiveData<Int>()
     val sourceAudioLive = MutableLiveData(SourceAudio.FRONT)
+    var timeReward = 0L
 
     companion object {
         fun start(activity : Activity){
@@ -57,7 +59,14 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
             }
 
             imvPlay.setOnClickListener {
-                start()
+                if(autoThreadAudio != null){
+                    start()
+                }else{
+                    RewardUtils.showRewardFeature(this@ManualCleanerActivity, nextAction = {
+                        timeReward = System.currentTimeMillis()
+                        start()
+                    })
+                }
             }
 
             sbVolume.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -162,15 +171,6 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        kotlin.runCatching {
-            cancelAudio()
-            canOpenTest = false
-        }
-    }
-
     fun start(){
         if(autoThreadAudio == null){
             autoThreadAudio =
@@ -227,8 +227,22 @@ class ManualCleanerActivity : BaseActivity<ActivityManualCleanerClone2Binding>()
         autoThreadAudio?.useEarpiece()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(System.currentTimeMillis() - timeReward < 1000){
+            return
+        }
+        kotlin.runCatching {
+            cancelAudio()
+            canOpenTest = false
+        }
+    }
+
     override fun onPause() {
         super.onPause()
+        if(System.currentTimeMillis() - timeReward < 1000){
+            return
+        }
         kotlin.runCatching {
             autoThreadAudio?.stopAudio()
         }

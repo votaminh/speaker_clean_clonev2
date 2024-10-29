@@ -13,6 +13,7 @@ import com.msc.blower_clean.component.auto.auto.rv2
 import com.msc.blower_clean.component.test_speaker.TestSpeakerActivity
 import com.msc.blower_clean.databinding.ActivityAutoClone2Binding
 import com.msc.blower_clean.utils.InterNativeUtils
+import com.msc.blower_clean.utils.RewardUtils
 import com.msc.blower_clean.utils.ViewEx.gone
 import com.msc.blower_clean.utils.ViewEx.visible
 import com.msc.speaker_cleaner.domain.layer.SourceAudio
@@ -27,7 +28,7 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
     val stateAudio = MutableLiveData<StateAudio>()
     val sourceAudio = MutableLiveData(SourceAudio.FRONT)
     val percentCleaner = MutableLiveData<Int>()
-
+    var timeReward = 0L
     private val rv2: rv2 = rv2()
 
     companion object {
@@ -53,7 +54,14 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
                 }
 
                 imvPlay.setOnClickListener {
-                    start()
+                    if(autoThreadAudio != null){
+                        start()
+                    }else{
+                        RewardUtils.showRewardFeature(this@AutoCleanActivity, nextAction = {
+                            timeReward = System.currentTimeMillis()
+                            start()
+                        })
+                    }
                 }
 
                 tvFront.setOnClickListener {
@@ -200,7 +208,9 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
 
     override fun onResume() {
         super.onResume()
-
+        if(System.currentTimeMillis() - timeReward < 1000){
+            return
+        }
         kotlin.runCatching {
             stopAudio()
         }
@@ -208,6 +218,9 @@ class AutoCleanActivity : BaseActivity<ActivityAutoClone2Binding>() {
 
     override fun onPause() {
         super.onPause()
+        if(System.currentTimeMillis() - timeReward < 1000){
+            return
+        }
         kotlin.runCatching {
             stopAudio()
         }

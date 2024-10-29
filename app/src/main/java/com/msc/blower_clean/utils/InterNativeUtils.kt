@@ -14,55 +14,56 @@ class InterNativeUtils {
         private var firstRequest = true
 
         fun loadInterBack(){
-            App.instance?.applicationContext?.let { context ->
-                if(SpManager.getInstance(context).getBoolean(NameRemoteAdmob.inter_back, true)){
-                    interBack = InterAdmob(
-                        context,
-                        BuildConfig.inter_back
-                    )
-                    interBack?.load(object : BaseAdmob.OnAdmobLoadListener {
-                        override fun onLoad() {
-                        }
-
-                        override fun onError(e: String?) {
-                        }
-
-                    })
-                }
-            }
+//            App.instance?.applicationContext?.let { context ->
+//                if(SpManager.getInstance(context).getBoolean(NameRemoteAdmob.inter_back, true)){
+//                    interBack = InterAdmob(
+//                        context,
+//                        BuildConfig.inter_back
+//                    )
+//                    interBack?.load(object : BaseAdmob.OnAdmobLoadListener {
+//                        override fun onLoad() {
+//                        }
+//
+//                        override fun onError(e: String?) {
+//                        }
+//
+//                    })
+//                }
+//            }
         }
 
         fun showInterAction(activity : Activity, nextAction : (() -> Unit)? = null){
-            if(firstRequest){
-                firstRequest = false
-                nextAction?.invoke()
-                return
-            }
-
-            if(latestInterShow == 0L){
-                latestInterShow = System.currentTimeMillis()
-            }else if(System.currentTimeMillis() - latestInterShow < 30000){
-                nextAction?.invoke()
-                return
-            }
-
-            latestInterShow = System.currentTimeMillis()
-
-            if(interBack == null || !SpManager.getInstance(activity).getBoolean(NameRemoteAdmob.inter_back, true)){
-                nextAction?.invoke()
-            }else{
-                interBack?.showInterstitial(activity, object : BaseAdmob.OnAdmobShowListener{
-                    override fun onShow() {
-                        nextAction?.invoke()
-                        loadInterBack()
-                    }
-
-                    override fun onError(e: String?) {
-                        nextAction?.invoke()
-                        loadInterBack()
-                    }
-                })
-            }
+            nextAction?.invoke()
+//            if(firstRequest){
+//                firstRequest = false
+//                nextAction?.invoke()
+//                return
+//            }
+//
+//            if(latestInterShow == 0L){
+//                latestInterShow = System.currentTimeMillis()
+//            }else if(System.currentTimeMillis() - latestInterShow < 30000){
+//                nextAction?.invoke()
+//                return
+//            }
+//
+//            latestInterShow = System.currentTimeMillis()
+//
+//            if(interBack == null || !SpManager.getInstance(activity).getBoolean(NameRemoteAdmob.inter_back, true)){
+//                nextAction?.invoke()
+//            }else{
+//                interBack?.showInterstitial(activity, object : BaseAdmob.OnAdmobShowListener{
+//                    override fun onShow() {
+//                        nextAction?.invoke()
+//                        loadInterBack()
+//                    }
+//
+//                    override fun onError(e: String?) {
+//                        nextAction?.invoke()
+//                        loadInterBack()
+//                    }
+//                })
+//            }
         }
     }
 }

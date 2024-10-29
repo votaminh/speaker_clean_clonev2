@@ -16,6 +16,7 @@ import com.msc.blower_clean.base.activity.BaseActivity
 import com.msc.blower_clean.component.test_speaker.TestSpeakerActivity
 import com.msc.blower_clean.databinding.ActivityVibrateClone2Binding
 import com.msc.blower_clean.utils.InterNativeUtils
+import com.msc.blower_clean.utils.RewardUtils
 import com.msc.blower_clean.utils.ViewEx.invisible
 import com.msc.blower_clean.utils.ViewEx.visible
 import com.msc.speaker_cleaner.component.cleanervibrate.StateVibrateClone2
@@ -35,6 +36,7 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
 
     private var countDownTimer : CountDownTimer? = null
 
+    var timeReward = 0L
 
     companion object {
         fun start(activity : Activity){
@@ -50,7 +52,16 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
         super.initViews()
 
         viewBinding.apply {
-            imvPlay.setOnClickListener { start() }
+            imvPlay.setOnClickListener {
+                if(countDownTimer != null){
+                    start()
+                }else{
+                    RewardUtils.showRewardFeature(this@VibrateCleanActivity){
+                        timeReward = System.currentTimeMillis()
+                        start()
+                    }
+                }
+            }
             tvNormal.setOnClickListener {
                 setInensity(IntensityVibrate.NORMAL_CLONE2)
                 isUseFront = true
@@ -185,6 +196,11 @@ class VibrateCleanActivity : BaseActivity<ActivityVibrateClone2Binding>() {
 
     override fun onPause() {
         super.onPause()
+
+        if(System.currentTimeMillis() - timeReward < 1000){
+            return
+        }
+
         kotlin.runCatching {
             cancelVibrate()
         }

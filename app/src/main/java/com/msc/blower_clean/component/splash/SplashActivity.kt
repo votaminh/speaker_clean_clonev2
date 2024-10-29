@@ -17,6 +17,7 @@ import com.msc.blower_clean.component.language.LanguageActivity
 import com.msc.blower_clean.databinding.ActivitySplashClone2Binding
 import com.msc.blower_clean.utils.NativeAdmobUtils
 import com.msc.blower_clean.utils.NetworkUtil
+import com.msc.blower_clean.utils.RewardUtils
 import com.msc.blower_clean.utils.SpManager
 import com.msc.m_utils.external.Ex.gone
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,6 +68,8 @@ class SplashActivity : BaseActivity<ActivitySplashClone2Binding>() {
                 NativeAdmobUtils.loadNativeLanguage()
             }
         }
+
+        RewardUtils.loadRewardFeature(this@SplashActivity)
 
         runProgress()
     }

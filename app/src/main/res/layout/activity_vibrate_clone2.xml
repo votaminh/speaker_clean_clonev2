@@ -73,16 +73,31 @@
 
 
 
-    <ImageView
-        android:id="@+id/imvPlay"
+    <RelativeLayout
         android:layout_width="@dimen/size60"
         android:layout_height="@dimen/size60"
-        android:src="@drawable/ic_play"
-        android:background="@drawable/bg_main_stroke_gray_round30"
-        android:padding="@dimen/size15"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/size50"
-        />
+        android:layout_marginTop="@dimen/size20"
+        >
+        <ImageView
+            android:id="@+id/imvPlay"
+            android:layout_width="@dimen/size60"
+            android:layout_height="@dimen/size60"
+            android:src="@drawable/ic_play"
+            android:background="@drawable/bg_main_stroke_gray_round30"
+            android:padding="@dimen/size15"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AD"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:background="#FFEB3B"
+            android:paddingHorizontal="@dimen/size3"
+            android:textSize="@dimen/size10"
+            />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
