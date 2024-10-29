@@ -42,7 +42,7 @@ android {
 
             buildConfigField "String", "open_resume", "\"ca-app-pub-7121787699260095/7531240428\""
 
-            buildConfigField "String", "inter_splash_high", "\"ca-app-pub-7121787699260095/7620793199\""
+            buildConfigField "String", "inter_splash_high", "\"ca-app-pub-7121787699260095/2813466876\""
             buildConfigField "String", "inter_splash", "\"ca-app-pub-7121787699260095/1157403760\""
 
             buildConfigField "String", "native_language_1_1", "\"ca-app-pub-7121787699260095/2114764773\""
