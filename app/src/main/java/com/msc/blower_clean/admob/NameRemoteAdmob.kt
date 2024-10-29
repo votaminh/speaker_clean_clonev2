@@ -6,10 +6,11 @@ class NameRemoteAdmob {
         const val inter_splash = "inter_splash"
         const val native_onboarding = "native_onboarding"
         const val native_freature = "native_freature"
-        const val banner_home = "banner_home"
+        const val native_full_screen = "native_full_screen"
+        const val banner_collap_home = "banner_collap_home"
         const val banner_splash = "banner_splash"
         const val inter_home = "inter_home"
         const val inter_back = "inter_back"
-        const val open_resume = "open_resume"
+        const val app_resume = "app_resume"
     }
 }

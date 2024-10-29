@@ -73,7 +73,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
 
         NativeAdmobUtils.onboardFullNativeAdmob?.run {
             nativeAdLive.observe(this@OnBoardingActivity){
-                if(available()){
+                if(available() && SpManager.getInstance(context).getBoolean(NameRemoteAdmob.native_language, true)){
                     addAdsToOnboard(this)
                 }
             }
@@ -93,9 +93,12 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
     }
 
     private fun showNative(currentPosition: Int) {
-
         viewBinding.flAdplaceholder.gone()
         viewBinding.navigationLayout.visible()
+
+        if(!SpManager.getInstance(this@OnBoardingActivity).getBoolean(NameRemoteAdmob.native_language, true)){
+            return
+        }
 
         if(onBoardingAdapter.itemCount == 3){
             when(currentPosition){

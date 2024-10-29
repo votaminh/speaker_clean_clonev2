@@ -56,7 +56,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
         val requestConfiguration = RequestConfiguration.Builder().build()
         MobileAds.setRequestConfiguration(requestConfiguration)
 
-        if(spManager.getBoolean(NameRemoteAdmob.open_resume, true)){
+        if(spManager.getBoolean(NameRemoteAdmob.app_resume, true)){
             openAdmob = OpenAdmob(this, BuildConfig.open_resume)
         }
 
@@ -126,7 +126,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecy
 
     override fun onStart(owner: LifecycleOwner) {
         super.onStart(owner)
-        if(spManager.getBoolean(NameRemoteAdmob.open_resume, true)){
+        if(spManager.getBoolean(NameRemoteAdmob.app_resume, true)){
             openAdmob?.run {
                 currentActivity?.let { showAdIfAvailable(it) }
             }
