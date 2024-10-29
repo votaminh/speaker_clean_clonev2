@@ -3,8 +3,10 @@ package com.msc.blower_clean.component.language
 import android.app.Activity
 import android.content.Intent
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.flash.light.component.language.LanguageAdapter
+import com.msc.blower_clean.R
 import com.msc.blower_clean.admob.BaseAdmob
 import com.msc.blower_clean.admob.NameRemoteAdmob
 import com.msc.blower_clean.admob.NativeAdmob
@@ -36,6 +38,9 @@ class LanguageActivity : BaseActivity<ActivityLanguageClone2Binding>() {
     }
 
     override fun initViews() {
+
+        setStatusBarColor(ContextCompat.getColor(this, R.color.white), true)
+
         val isFromSplash = intent.getBooleanExtra(Constant.KEY_INTENT_FROM_SPLASH, false)
 
         viewBinding.ivDone.gone()
