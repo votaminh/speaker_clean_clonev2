@@ -122,7 +122,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
                     }
                 }
 
-                2 -> {
+                1 -> {
                     viewBinding.flAdplaceholder.visible()
                     NativeAdmobUtils.onboardNativeAdmob2?.run {
                         nativeAdLive?.observe(this@OnBoardingActivity){
@@ -168,7 +168,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
                     viewBinding.navigationLayout.gone()
                 }
 
-                3 -> {
+                1 -> {
                     viewBinding.flAdplaceholder.visible()
                     NativeAdmobUtils.onboardNativeAdmob2?.run {
                         nativeAdLive?.observe(this@OnBoardingActivity){
