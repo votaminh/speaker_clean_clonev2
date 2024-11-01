@@ -101,9 +101,23 @@ class NativeAdmobUtils {
                 if(SpManager.getInstance(context).getBoolean(NameRemoteAdmob.native_full_screen, true)){
                     onboardFullNativeAdmob = NativeAdmob(
                         context,
-                        BuildConfig.native_onboarding_full
+                        BuildConfig.native_onboarding_full_2f
                     )
-                    onboardFullNativeAdmob?.load(null)
+                    onboardFullNativeAdmob?.load(object : BaseAdmob.OnAdmobLoadListener {
+                        override fun onLoad() {
+
+                        }
+
+                        override fun onError(e: String?) {
+                            onboardFullNativeAdmob = NativeAdmob(
+                                context,
+                                BuildConfig.native_onboarding_full
+                            )
+
+                            onboardFullNativeAdmob?.load(null)
+                        }
+
+                    })
                 }
             }
         }
