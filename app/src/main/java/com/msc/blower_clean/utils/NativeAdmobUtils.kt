@@ -32,33 +32,21 @@ class NativeAdmobUtils {
                 App.instance?.applicationContext?.let { context ->
 
                     if(SpManager.getInstance(context).getBoolean(NameRemoteAdmob.native_language, true)){
-                        SpManager.getInstance(context).putBoolean("first_native_language", false)
 
-                        languageNative1 = NativeAdmob(
-                            context,
-                            BuildConfig.native_language_1_1
-                        )
-                        languageNative1?.load(object : BaseAdmob.OnAdmobLoadListener {
-                            override fun onLoad() {
-                            }
+                        if(SpManager.getInstance(context).getBoolean("first_native_language", true)){
+                            SpManager.getInstance(context).putBoolean("first_native_language", false)
+                            languageNative1 = NativeAdmob(context, BuildConfig.native_language_1_1)
+                            languageNative1?.load(null)
 
-                            override fun onError(e: String?) {
-                            }
+                            languageNative2 = NativeAdmob(context, BuildConfig.native_language_1_2)
+                            languageNative2?.load(null)
+                        }else{
+                            languageNative1 = NativeAdmob(context, BuildConfig.native_language_2_1)
+                            languageNative1?.load(null)
 
-                        })
-
-                        languageNative2 = NativeAdmob(
-                            context,
-                            BuildConfig.native_language_1_2
-                        )
-                        languageNative2?.load(object : BaseAdmob.OnAdmobLoadListener {
-                            override fun onLoad() {
-                            }
-
-                            override fun onError(e: String?) {
-                            }
-
-                        })
+                            languageNative2 = NativeAdmob(context, BuildConfig.native_language_2_2)
+                            languageNative2?.load(null)
+                        }
                     }
                 }
             }
@@ -69,55 +57,41 @@ class NativeAdmobUtils {
             App.instance?.applicationContext?.let { context ->
 
                 if(SpManager.getInstance(context).getBoolean(NameRemoteAdmob.native_onboarding, true)){
-                    SpManager.getInstance(context).putBoolean("first_native_onboarding", false)
-                    onboardNativeAdmob1 = NativeAdmob(
-                        context,
-                        BuildConfig.native_onboarding_1_1
-                    )
+                    if(SpManager.getInstance(context).getBoolean("first_native_onboarding", true)){
+                        SpManager.getInstance(context).putBoolean("first_native_onboarding", false)
+                        onboardNativeAdmob1 = NativeAdmob(context, BuildConfig.native_onboarding_1_1)
+                        onboardNativeAdmob1?.load(null)
 
-                    onboardNativeAdmob1?.load(object : BaseAdmob.OnAdmobLoadListener {
-                        override fun onLoad() {
-                        }
+                        onboardNativeAdmob2 = NativeAdmob(context, BuildConfig.native_onboarding_1_2)
+                        onboardNativeAdmob2?.load(null)
+                    }else{
+                        onboardNativeAdmob1 = NativeAdmob(context, BuildConfig.native_onboarding_2_1)
+                        onboardNativeAdmob1?.load(null)
 
-                        override fun onError(e: String?) {
-                        }
-
-                    })
-
-                    onboardNativeAdmob2 = NativeAdmob(
-                        context,
-                        BuildConfig.native_onboarding_1_2
-                    )
-                    onboardNativeAdmob2?.load(object : BaseAdmob.OnAdmobLoadListener {
-                        override fun onLoad() {
-                        }
-
-                        override fun onError(e: String?) {
-                        }
-
-                    })
+                        onboardNativeAdmob2 = NativeAdmob(context, BuildConfig.native_onboarding_2_2)
+                        onboardNativeAdmob2?.load(null)
+                    }
                 }
 
                 if(SpManager.getInstance(context).getBoolean(NameRemoteAdmob.native_full_screen, true)){
-                    onboardFullNativeAdmob = NativeAdmob(
-                        context,
-                        BuildConfig.native_onboarding_full_2f
-                    )
-                    onboardFullNativeAdmob?.load(object : BaseAdmob.OnAdmobLoadListener {
-                        override fun onLoad() {
-
-                        }
-
-                        override fun onError(e: String?) {
-                            onboardFullNativeAdmob = NativeAdmob(
-                                context,
-                                BuildConfig.native_onboarding_full
-                            )
-
-                            onboardFullNativeAdmob?.load(null)
-                        }
-
-                    })
+                    if(SpManager.getInstance(context).getBoolean("first_native_full_onboarding", true)){
+                        SpManager.getInstance(context).putBoolean("first_native_full_onboarding", false)
+                        onboardFullNativeAdmob = NativeAdmob(context, BuildConfig.native_onboarding_full_2f)
+                        onboardFullNativeAdmob?.load(object : BaseAdmob.OnAdmobLoadListener {
+                            override fun onLoad() {
+                            }
+                            override fun onError(e: String?) {
+                                onboardFullNativeAdmob = NativeAdmob(
+                                    context,
+                                    BuildConfig.native_onboarding_full
+                                )
+                                onboardFullNativeAdmob?.load(null)
+                            }
+                        })
+                    }else{
+                        onboardFullNativeAdmob = NativeAdmob(context, BuildConfig.native_onboarding_full_2)
+                        onboardFullNativeAdmob?.load(null)
+                    }
                 }
             }
         }
@@ -125,18 +99,13 @@ class NativeAdmobUtils {
         fun loadNativePermission() {
             if (NetworkUtil.isOnline) {
                 App.instance?.applicationContext?.let { context ->
-                    permissionNative = NativeAdmob(
-                        context,
-                        BuildConfig.native_freature
-                    )
-                    permissionNative?.load(object : BaseAdmob.OnAdmobLoadListener {
-                        override fun onLoad() {
-                        }
-
-                        override fun onError(e: String?) {
-                        }
-
-                    })
+                    if(SpManager.getInstance(context).getBoolean("first_native_feature", true)){
+                        permissionNative = NativeAdmob(context, BuildConfig.native_freature)
+                        permissionNative?.load(null)
+                    }else{
+                        permissionNative = NativeAdmob(context, BuildConfig.native_freature_2)
+                        permissionNative?.load(null)
+                    }
                 }
             }
         }
