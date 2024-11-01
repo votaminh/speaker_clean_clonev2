@@ -15,8 +15,18 @@ class RewardUtils {
 
 
         fun loadRewardFeature(context : Context){
-            rewardAdmob = RewardAdmob(context, BuildConfig.reward_feature)
-            rewardAdmob?.load(null)
+            rewardAdmob = RewardAdmob(context, BuildConfig.reward_feature_2f)
+            rewardAdmob?.load(object : BaseAdmob.OnAdmobLoadListener{
+                override fun onLoad() {
+
+                }
+
+                override fun onError(e: String?) {
+                    rewardAdmob = RewardAdmob(context, BuildConfig.reward_feature)
+                    rewardAdmob?.load(null)
+                }
+
+            })
         }
 
         fun showRewardFeature(activity: Activity, nextAction : (() -> Unit)? = null){

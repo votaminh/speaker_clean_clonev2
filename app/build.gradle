@@ -62,6 +62,7 @@ android {
 
             buildConfigField "String", "inter_back", "\"ca-app-pub-7121787699260095/9861392855\""
             buildConfigField "String", "reward_feature", "\"ca-app-pub-7121787699260095/3116719208\""
+            buildConfigField "String", "reward_feature_2f", "\"ca-app-pub-7121787699260095/8460393263\""
         }
 
         debug {
@@ -89,6 +90,7 @@ android {
 
             buildConfigField "String", "inter_back", "\"ca-app-pub-3940256099942544/1033173712\""
             buildConfigField "String", "reward_feature", "\"ca-app-pub-3940256099942544/5224354917\""
+            buildConfigField "String", "reward_feature_2f", "\"ca-app-pub-3940256099942544/5224354917\""
         }
     }
     compileOptions {
