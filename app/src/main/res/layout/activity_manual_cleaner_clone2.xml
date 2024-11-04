@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             app:tint="@color/white"
             android:padding="@dimen/size8"
-            android:background="@drawable/bg_main_stroke_gray_round20"
+            android:background="@drawable/bg_stroke_gray_round20"
             />
 
         <TextView
@@ -84,7 +84,7 @@
                 android:text="@string/txt_front"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:background="@drawable/bg_main_stroke_gray_round20"
+                android:background="@drawable/bg_stroke_gray_round20"
                 android:layout_marginRight="@dimen/size10"
                 />
 
@@ -96,7 +96,7 @@
                 android:text="@string/txt_ear"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:background="@drawable/bg_main_stroke_gray_round20"
+                android:background="@drawable/bg_stroke_gray_round20"
                 android:layout_marginLeft="@dimen/size10"
                 android:alpha="0.3"
                 />
@@ -150,7 +150,7 @@
             android:layout_width="@dimen/size60"
             android:layout_height="@dimen/size60"
             android:src="@drawable/ic_play"
-            android:background="@drawable/bg_main_stroke_gray_round30"
+            android:background="@drawable/bg_stroke_gray_round20"
             android:padding="@dimen/size15"
             />
         <TextView

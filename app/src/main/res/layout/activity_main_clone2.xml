@@ -28,7 +28,7 @@
             android:layout_width="@dimen/size40"
             android:layout_height="@dimen/size40"
             android:src="@drawable/ic_setting"
-            android:background="@drawable/bg_main_stroke_gray_round20"
+            android:background="@drawable/bg_stroke_gray_round20"
             android:padding="@dimen/size8"
             app:tint="@color/white"
             android:layout_alignParentRight="true"
@@ -51,7 +51,7 @@
                 android:orientation="vertical"
                 android:layout_marginHorizontal="@dimen/size20"
                 android:layout_marginTop="@dimen/size24"
-                android:background="@drawable/bg_main2_stroke_gray_round20"
+                android:background="@drawable/bg_stroke_gray_round20"
                 >
 
                 <ImageView
