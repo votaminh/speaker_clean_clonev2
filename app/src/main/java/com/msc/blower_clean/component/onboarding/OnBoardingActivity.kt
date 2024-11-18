@@ -45,7 +45,13 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     currentPosition = position
-
+                    if(currentPosition < onBoardingAdapter.itemCount - 1){
+                        viewBinding.llNext.visible()
+                        viewBinding.getStart.gone()
+                    }else{
+                        viewBinding.llNext.gone()
+                        viewBinding.getStart.visible()
+                    }
                     showNative(currentPosition)
                 }
             })
@@ -57,6 +63,11 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
                     PermissionActivity.start(this@OnBoardingActivity)
                     finish()
                 }
+            }
+
+            getStart.setOnClickListener {
+                PermissionActivity.start(this@OnBoardingActivity)
+                finish()
             }
 
             dotIndicator.attachTo(vpOnBoarding)

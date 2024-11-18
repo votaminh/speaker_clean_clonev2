@@ -23,29 +23,74 @@
         android:gravity="center_horizontal"
         >
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/button_next"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llNext"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/size4"
-            android:text="@string/txt_next"
-            android:textColor="@color/app_main"
-            android:textSize="@dimen/size14"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/size10"
+            >
 
-        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-            android:id="@+id/dot_indicator"
-            android:layout_width="wrap_content"
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dot_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dotsColor="#E6E6E6"
+                app:dotsCornerRadius="@dimen/size4"
+                app:dotsSize="@dimen/size10"
+                app:dotsSpacing="@dimen/size4"
+                app:dotsWidthFactor="2.5"
+                app:progressMode="false"
+                app:selectedDotColor="@color/app_main"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/button_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_next"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_main_round20"
+                android:textSize="@dimen/size14"
+                android:textStyle="bold"
+                android:paddingHorizontal="@dimen/size20"
+                android:paddingBottom="@dimen/size5"
+                android:paddingTop="@dimen/size4"
+                />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/getStart"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:dotsColor="#E6E6E6"
-            app:dotsCornerRadius="@dimen/size4"
-            app:dotsSize="@dimen/size10"
-            app:dotsSpacing="@dimen/size4"
-            app:dotsWidthFactor="2.5"
-            app:progressMode="false"
-            app:selectedDotColor="@color/app_main"
-            android:layout_marginBottom="@dimen/size10"
-            />
+            android:layout_below="@+id/contentNative"
+            android:layout_marginLeft="@dimen/size10"
+            android:layout_marginRight="@dimen/size10"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="#F89A0D"
+            app:cardCornerRadius="@dimen/size20"
+            >
+            <TextView
+                android:id="@+id/ad_call_to_action"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/size14"
+                android:text="@string/txt_get_start"
+                android:paddingTop="@dimen/size12"
+                android:paddingBottom="@dimen/size12"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+        </androidx.cardview.widget.CardView>
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/fl_adplaceholder"
