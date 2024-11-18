@@ -66,16 +66,15 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingClone2Binding>() {
             }
 
             getStart.setOnClickListener {
+                if(SpManager.getInstance(this@OnBoardingActivity).getBoolean(NameRemoteAdmob.native_onboarding, true)){
+                    NativeAdmobUtils.loadNativePermission()
+                }
                 PermissionActivity.start(this@OnBoardingActivity)
                 finish()
             }
 
             dotIndicator.attachTo(vpOnBoarding)
             onBoardingAdapter.setData(ArrayList(viewModel.listOnBoarding))
-        }
-
-        if(SpManager.getInstance(this).getBoolean(NameRemoteAdmob.native_onboarding, true)){
-            NativeAdmobUtils.loadNativePermission()
         }
     }
 
