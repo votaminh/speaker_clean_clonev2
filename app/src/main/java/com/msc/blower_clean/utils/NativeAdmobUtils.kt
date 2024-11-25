@@ -100,8 +100,20 @@ class NativeAdmobUtils {
             if (NetworkUtil.isOnline) {
                 App.instance?.applicationContext?.let { context ->
                     if(SpManager.getInstance(context).getBoolean("first_native_feature", true)){
-                        permissionNative = NativeAdmob(context, BuildConfig.native_freature)
-                        permissionNative?.load(null)
+                        SpManager.getInstance(context).putBoolean("first_native_feature", false)
+
+                        permissionNative = NativeAdmob(context, BuildConfig.native_feature_2f)
+                        permissionNative?.load(object : BaseAdmob.OnAdmobLoadListener {
+                            override fun onLoad() {
+
+                            }
+
+                            override fun onError(e: String?) {
+                                permissionNative = NativeAdmob(context, BuildConfig.native_freature)
+                                permissionNative?.load(null)
+                            }
+
+                        })
                     }else{
                         permissionNative = NativeAdmob(context, BuildConfig.native_freature_2)
                         permissionNative?.load(null)

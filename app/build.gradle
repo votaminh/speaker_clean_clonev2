@@ -60,6 +60,7 @@ android {
             buildConfigField "String", "native_onboarding_full_2f", "\"ca-app-pub-7121787699260095/7447125697\""
 
             buildConfigField "String", "native_freature", "\"ca-app-pub-7121787699260095/4190761212\""
+            buildConfigField "String", "native_feature_2f", "\"ca-app-pub-7121787699260095/5407784128\""
             buildConfigField "String", "native_freature_2", "\"ca-app-pub-7121787699260095/7255554001\""
 
             buildConfigField "String", "banner_home", "\"ca-app-pub-7121787699260095/6050637793\""
@@ -95,6 +96,7 @@ android {
             buildConfigField "String", "native_onboarding_full_2f", "\"ca-app-pub-3940256099942544/2247696110\""
 
             buildConfigField "String", "native_freature", "\"ca-app-pub-3940256099942544/2247696110\""
+            buildConfigField "String", "native_feature_2f", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "native_freature_2", "\"ca-app-pub-3940256099942544/2247696110\""
 
             buildConfigField "String", "banner_home", "\"ca-app-pub-3940256099942544/2014213617\""
